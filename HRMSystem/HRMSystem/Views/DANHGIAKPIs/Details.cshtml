@@ -1,0 +1,89 @@
+﻿@model HRMSystem.Models.DANHGIAKPI
+
+@{
+    ViewBag.Title = "Chi Tiết Đánh Giá KPI";
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+    <div>
+        <button onclick="window.print()" class="btn btn-sm" style="background-color: #37474f; color: #fff; font-weight: 600; margin-right: 5px;">
+            <i class="glyphicon glyphicon-print"></i> In / Xuất PDF
+        </button>
+        <a href="@Url.Action("Edit", new { id = Model.DANHGIAID })" class="btn btn-sm" style="background-color: #1e282d; color: #fff; font-weight: 600;">
+            <i class="glyphicon glyphicon-pencil"></i> Chỉnh sửa
+        </a>
+    </div>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading">PHIẾU ĐÁNH GIÁ KPI</h1>
+
+    <table class="table-exact">
+        <!-- 1. KẾT QUẢ ĐÁNH GIÁ -->
+        <thead>
+            <tr>
+                <th colspan="2" class="sec-title">KẾT QUẢ ĐÁNH GIÁ NHÂN SỰ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sec-label">Kỳ đánh giá</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">@Model.KYDANHGIA</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Điểm hiệu suất</td>
+                <td class="sec-value">@(Model.DIEMHIEUSUAT.HasValue ? Model.DIEMHIEUSUAT.Value.ToString("0.0") : "-") / 5.0</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Điểm chuyên cần</td>
+                <td class="sec-value">@(Model.DIEMCHUYENCAN.HasValue ? Model.DIEMCHUYENCAN.Value.ToString("0.0") : "-") / 5.0</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Điểm tổng kết</td>
+                <td class="sec-value" style="font-weight: bold; color: #b45309;">
+                    @(Model.DIEMTONGKET.HasValue ? Model.DIEMTONGKET.Value.ToString("0.0") : "-") / 5.0
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Nhận xét & Góp ý</td>
+                <td class="sec-value">@Model.NHANXET</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Ngày đánh giá</td>
+                <td class="sec-value">@Model.NGAYDANHGIA.ToString("dd/MM/yyyy")</td>
+            </tr>
+
+            <!-- 2. THÔNG TIN NHÂN VIÊN ĐƯỢC ĐÁNH GIÁ -->
+            <tr>
+                <th colspan="2" class="sec-title">THÔNG TIN NHÂN VIÊN</th>
+            </tr>
+            <tr>
+                <td class="sec-label">Mã nhân viên</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.MANHANVIEN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Họ và tên</td>
+                <td class="sec-value" style="font-weight: 600;">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.HOTEN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Phòng ban</td>
+                <td class="sec-value">
+                    @(Model.NHANVIEN != null && Model.NHANVIEN.PHONGBAN != null ? Model.NHANVIEN.PHONGBAN.TENPHONGBAN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Chức vụ</td>
+                <td class="sec-value">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.CHUCVU : "-")
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

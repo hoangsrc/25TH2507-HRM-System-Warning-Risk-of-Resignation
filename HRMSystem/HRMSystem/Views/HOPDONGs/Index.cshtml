@@ -1,0 +1,106 @@
+﻿@model IEnumerable<HRMSystem.Models.HOPDONG>
+
+@{
+    ViewBag.Title = "Quản Lý Hợp Đồng";
+}
+
+<div class="hrm-card">
+    <div class="hrm-header">
+        <div>
+            <h3 style="margin: 0; font-weight: 700; color: #1e282d;">
+                <i class="glyphicon glyphicon-briefcase" style="color: #b45309; margin-right: 8px;"></i>QUẢN LÝ HỢP ĐỒNG LAO ĐỘNG
+            </h3>
+            <span style="color: #64748b; font-size: 13px;">
+                Tổng số hợp đồng: <strong style="color: #0f172a;">@Model.Count()</strong> bản ghi
+            </span>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="searchInput" onkeyup="searchTable()" class="form-control"
+                   placeholder="🔍 Tìm số HĐ, tên, loại HĐ..."
+                   style="width: 250px; border-radius: 6px; font-size: 13px;">
+
+            <a href="@Url.Action("Create")" class="btn btn-success" style="border-radius: 6px; font-weight: 600; white-space: nowrap;">
+                <i class="glyphicon glyphicon-plus"></i> Tạo hợp đồng mới
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table hrm-table" id="contractTable">
+            <thead>
+                <tr>
+                    <th class="text-center nowrap" style="width: 120px;">Số hợp đồng</th>
+                    <th class="nowrap">Nhân viên ký kết</th>
+                    <th class="nowrap">Loại hợp đồng</th>
+                    <th class="text-center nowrap">Từ ngày</th>
+                    <th class="text-center nowrap">Đến ngày</th>
+                    <th class="text-right nowrap">Mức lương cơ bản</th>
+                    <th class="text-center nowrap" style="width: 130px;">Trạng thái</th>
+                    <th class="text-center nowrap" style="width: 140px;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center nowrap" style="font-weight: 700; color: #1a365d;">
+                            @Html.DisplayFor(modelItem => item.SOHOPDONG)
+                        </td>
+                        <td class="nowrap">
+                            <strong style="color: #0f172a;">
+                                @(item.NHANVIEN != null ? item.NHANVIEN.HOTEN : "-")
+                            </strong>
+                            <small style="color: #64748b; margin-left: 4px;">
+                                (@(item.NHANVIEN != null ? item.NHANVIEN.MANHANVIEN : ""))
+                            </small>
+                        </td>
+                        <td class="nowrap">
+                            @Html.DisplayFor(modelItem => item.LOAIHOPDONG)
+                        </td>
+                        <td class="text-center nowrap">
+                            @item.TUNGAY.ToString("dd/MM/yyyy")
+                        </td>
+                        <td class="text-center nowrap">
+                            @(item.DENNGAY.HasValue ? item.DENNGAY.Value.ToString("dd/MM/yyyy") : "Vô thời hạn")
+                        </td>
+                        <td class="text-right nowrap" style="font-weight: 600; color: #2e7d32;">
+                            @item.MUCLUONG.ToString("N0") VNĐ
+                        </td>
+                        <td class="text-center nowrap">
+                            <span class="status-badge">
+                                @Html.DisplayFor(modelItem => item.TRANGTHAI)
+                            </span>
+                        </td>
+                        <td class="text-center nowrap">
+                            <a href="@Url.Action("Edit", new { id = item.HOPDONGID })" class="action-btn btn-edit" title="Sửa">Sửa</a>
+                            <a href="@Url.Action("Details", new { id = item.HOPDONGID })" class="action-btn btn-view" title="Xem">Xem</a>
+                            <a href="@Url.Action("Delete", new { id = item.HOPDONGID })" class="action-btn btn-del" title="Xóa">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function searchTable() {
+        var input = document.getElementById("searchInput");
+        var table = document.getElementById("contractTable");
+
+        if (input instanceof HTMLInputElement && table) {
+            var filter = input.value.toLowerCase();
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var text = tr[i].textContent || tr[i].innerText || "";
+                if (text.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

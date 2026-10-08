@@ -1,0 +1,66 @@
+﻿@model HRMSystem.Models.PHONGBAN
+
+@{
+    ViewBag.Title = "Thêm Mới Phòng Ban";
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading">THÊM MỚI PHÒNG BAN</h1>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <table class="table-exact">
+            <thead>
+                <tr>
+                    <th colspan="2" class="sec-title">THÔNG TIN PHÒNG BAN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="sec-label">Mã phòng ban <span class="text-danger">*</span></td>
+                    <td class="sec-value">
+                        @Html.EditorFor(model => model.PHONGBANID, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập số (Ví dụ: 6)", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.PHONGBANID, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Tên phòng ban <span class="text-danger">*</span></td>
+                    <td class="sec-value">
+                        @Html.EditorFor(model => model.TENPHONGBAN, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nhập tên phòng ban", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.TENPHONGBAN, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Mô tả chức năng</td>
+                    <td class="sec-value">
+                        @Html.TextAreaFor(model => model.MOTA, new { @class = "form-control", @rows = "3", @style = "height: auto;", @placeholder = "Mô tả chức năng, nhiệm vụ phòng ban" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Trạng thái</td>
+                    <td class="sec-value">
+                        <label style="font-weight: normal; margin: 0; cursor: pointer;">
+                            @Html.CheckBoxFor(model => model.DANGHOATDONG, new { @checked = "checked" }) Đang hoạt động
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 25px; text-align: right;">
+            <a href="@Url.Action("Index")" class="btn btn-default" style="border: 1px solid #b0bec5; font-weight: 600; margin-right: 8px;">Hủy bỏ</a>
+            <button type="submit" class="btn" style="background-color: #2e7d32; color: #fff; font-weight: bold; padding: 7px 25px;">
+                <i class="glyphicon glyphicon-plus"></i> Thêm mới phòng ban
+            </button>
+        </div>
+    }
+</div>

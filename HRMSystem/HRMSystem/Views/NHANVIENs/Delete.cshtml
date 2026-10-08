@@ -1,0 +1,88 @@
+﻿@model HRMSystem.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "Xác Nhận Xóa Hồ Sơ - " + Model.MANHANVIEN;
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading-delete">XÁC NHẬN XÓA HỒ SƠ NHÂN VIÊN</h1>
+    <div class="delete-warning-text">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        Bạn có chắc chắn muốn xóa nhân viên <strong>@Model.HOTEN (@Model.MANHANVIEN)</strong> khỏi hệ thống không? Dữ liệu sau khi xóa sẽ không thể phục hồi.
+    </div>
+
+    <table class="table-exact">
+        <thead>
+            <tr>
+                <th colspan="2" class="sec-title">THÔNG TIN CÁ NHÂN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sec-label">Họ tên</td>
+                <td class="sec-value" style="font-weight: 600;">@Model.HOTEN</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Ngày sinh</td>
+                <td class="sec-value">@(Model.NGAYSINH.HasValue ? Model.NGAYSINH.Value.ToString("dd/MM/yyyy") : "-")</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Giới tính</td>
+                <td class="sec-value">@Model.GIOITINH</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Số điện thoại</td>
+                <td class="sec-value">@Model.SODIENTHOAI</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Email</td>
+                <td class="sec-value">@Model.EMAIL</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Địa chỉ</td>
+                <td class="sec-value">@Model.DIACHI</td>
+            </tr>
+
+            <tr>
+                <th colspan="2" class="sec-title">VAI TRÒ HIỆN TẠI</th>
+            </tr>
+            <tr>
+                <td class="sec-label">Mã nhân viên</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">@Model.MANHANVIEN</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Chức danh</td>
+                <td class="sec-value" style="font-weight: 600;">@Model.CHUCVU</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Bộ phận / Phòng ban</td>
+                <td class="sec-value">@(Model.PHONGBAN != null ? Model.PHONGBAN.TENPHONGBAN : "-")</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Ngày vào làm</td>
+                <td class="sec-value">@(Model.NGAYVAOLAM.HasValue ? Model.NGAYVAOLAM.Value.ToString("dd/MM/yyyy") : "-")</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Trạng thái</td>
+                <td class="sec-value">@Model.TRANGTHAI</td>
+            </tr>
+        </tbody>
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div style="margin-top: 25px; text-align: right;">
+            <a href="@Url.Action("Index")" class="btn btn-default" style="border: 1px solid #b0bec5; font-weight: 600; margin-right: 8px;">Không, quay lại</a>
+            <button type="submit" class="btn btn-danger" style="font-weight: bold; padding: 7px 25px;">
+                <i class="glyphicon glyphicon-trash"></i> Xác nhận xóa vĩnh viễn
+            </button>
+        </div>
+    }
+</div>

@@ -1,0 +1,83 @@
+﻿@model HRMSystem.Models.CHAMCONG
+
+@{
+    ViewBag.Title = "Chi Tiết Chấm Công";
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+    <div>
+        <button onclick="window.print()" class="btn btn-sm" style="background-color: #37474f; color: #fff; font-weight: 600; margin-right: 5px;">
+            <i class="glyphicon glyphicon-print"></i> In / Xuất PDF
+        </button>
+        <a href="@Url.Action("Edit", new { id = Model.CHAMCONGID })" class="btn btn-sm" style="background-color: #1e282d; color: #fff; font-weight: 600;">
+            <i class="glyphicon glyphicon-pencil"></i> Chỉnh sửa
+        </a>
+    </div>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading">PHIẾU GHI NHẬN CHẤM CÔNG</h1>
+
+    <table class="table-exact">
+        <thead>
+            <tr>
+                <th colspan="2" class="sec-title">THÔNG TIN NHÂN VIÊN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sec-label">Mã nhân viên</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.MANHANVIEN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Họ và tên</td>
+                <td class="sec-value" style="font-weight: 600;">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.HOTEN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Phòng ban</td>
+                <td class="sec-value">
+                    @(Model.NHANVIEN != null && Model.NHANVIEN.PHONGBAN != null ? Model.NHANVIEN.PHONGBAN.TENPHONGBAN : "-")
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="2" class="sec-title">DỮ LIỆU ĐIỂM DANH TRONG NGÀY</th>
+            </tr>
+            <tr>
+                <td class="sec-label">Ngày làm việc</td>
+                <td class="sec-value" style="font-weight: 600;">
+                    @Model.NGAYCHAMCONG.ToString("dd/MM/yyyy")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Giờ vào ca</td>
+                <td class="sec-value">
+                    @(Model.GIOVAO.HasValue ? Model.GIOVAO.Value.ToString("HH:mm") : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Giờ ra ca</td>
+                <td class="sec-value">
+                    @(Model.GIORA.HasValue ? Model.GIORA.Value.ToString("HH:mm") : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Trạng thái chấm công</td>
+                <td class="sec-value">
+                    <span class="status-badge">@Model.TRANGTHAI</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Ghi chú</td>
+                <td class="sec-value">@Model.GHICHU</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

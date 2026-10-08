@@ -1,0 +1,122 @@
+﻿@model IEnumerable<HRMSystem.Models.NHANVIEN>
+
+@{
+    ViewBag.Title = "Quản Lý Nhân Viên";
+}
+
+<div class="hrm-card">
+    <!-- Tiêu đề + Nút thêm mới + Ô tìm kiếm -->
+    <div class="hrm-header">
+        <div>
+            <h3 style="margin: 0; font-weight: 700; color: #1e293b;">
+                <i class="glyphicon glyphicon-user" style="color: #3b82f6; margin-right: 8px;"></i>QUẢN LÝ NHÂN VIÊN
+            </h3>
+            <span style="color: #64748b; font-size: 13px;">
+                Tổng số nhân sự: <strong style="color: #0f172a;">@Model.Count()</strong> nhân viên
+            </span>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <!-- Ô tìm kiếm trực tiếp -->
+            <input type="text" id="searchInput" onkeyup="searchTable()" class="form-control"
+                   placeholder="🔍 Tìm theo tên, mã NV, chức vụ..."
+                   style="width: 250px; border-radius: 6px; font-size: 13px;">
+
+            <a href="@Url.Action("Create")" class="btn btn-success" style="border-radius: 6px; font-weight: 600; white-space: nowrap;">
+                <i class="glyphicon glyphicon-plus"></i> Thêm nhân viên
+            </a>
+        </div>
+    </div>
+
+    <!-- Bảng danh sách -->
+    <div class="table-responsive">
+        <table class="table hrm-table" id="employeeTable">
+            <thead>
+                <tr>
+                    <th class="text-center">Mã NV</th>
+                    <th>Họ và tên</th>
+                    <th class="text-center">Ngày sinh</th>
+                    <th class="text-center">Giới tính</th>
+                    <th>Phòng ban</th>
+                    <th>Chức vụ</th>
+                    <th class="nowrap">Số điện thoại</th>
+                    <th>Email</th>
+                    <th class="text-center">Ngày vào làm</th>
+                    <th class="text-center">Trạng thái</th>
+                    <th class="text-center" style="width: 150px;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center nowrap" style="font-weight: 700; color: #2563eb;">
+                            @Html.DisplayFor(modelItem => item.MANHANVIEN)
+                        </td>
+                        <td class="nowrap" style="font-weight: 600; color: #0f172a;">
+                            @Html.DisplayFor(modelItem => item.HOTEN)
+                        </td>
+                        <td class="text-center nowrap">
+                            @(item.NGAYSINH.HasValue ? item.NGAYSINH.Value.ToString("dd/MM/yyyy") : "-")
+                        </td>
+                        <td class="text-center nowrap">
+                            @Html.DisplayFor(modelItem => item.GIOITINH)
+                        </td>
+                        <td class="nowrap">
+                            <span class="dept-badge">
+                                @(item.PHONGBAN != null ? item.PHONGBAN.TENPHONGBAN : "Chưa phân bổ")
+                            </span>
+                        </td>
+                        <td class="nowrap">
+                            @Html.DisplayFor(modelItem => item.CHUCVU)
+                        </td>
+                        <td class="nowrap">
+                            @Html.DisplayFor(modelItem => item.SODIENTHOAI)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EMAIL)
+                        </td>
+                        <td class="text-center nowrap">
+                            @(item.NGAYVAOLAM.HasValue ? item.NGAYVAOLAM.Value.ToString("dd/MM/yyyy") : "-")
+                        </td>
+                        <td class="text-center nowrap">
+                            <span class="status-badge">
+                                @Html.DisplayFor(modelItem => item.TRANGTHAI)
+                            </span>
+                        </td>
+                        <td class="text-center nowrap">
+                            <a href="@Url.Action("Edit", new { id = item.NHANVIENID })" class="action-btn btn-edit" title="Sửa">
+                                <i class="glyphicon glyphicon-pencil"></i> Sửa
+                            </a>
+                            <a href="@Url.Action("Details", new { id = item.NHANVIENID })" class="action-btn btn-view" title="Xem">
+                                <i class="glyphicon glyphicon-eye-open"></i> Xem
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.NHANVIENID })" class="action-btn btn-del" title="Xóa">
+                                <i class="glyphicon glyphicon-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Script tìm kiếm nhanh -->
+<script>
+    function searchTable() {
+        var input = document.getElementById("searchInput");
+        var filter = input.value.toLowerCase();
+        var table = document.getElementById("employeeTable");
+        var tr = table.getElementsByTagName("tr");
+
+        for (var i = 1; i < tr.length; i++) {
+            var text = tr[i].textContent || tr[i].innerText;
+            if (text.toLowerCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+</script>

@@ -1,0 +1,76 @@
+﻿@model HRMSystem.Models.DONNGHIPHEP
+
+@{
+    ViewBag.Title = "Cập Nhật Đơn Nghỉ Phép";
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading">CẬP NHẬT / DUYỆT ĐƠN NGHỈ PHÉP</h1>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.DONNGHIPHEPID)
+        @Html.HiddenFor(model => model.NGAYTAO)
+
+        <table class="table-exact">
+            <thead>
+                <tr>
+                    <th colspan="2" class="sec-title">THÔNG TIN ĐƠN NGHỈ PHÉP</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="sec-label">Nhân viên</td>
+                    <td class="sec-value">
+                        @Html.DropDownList("NHANVIENID", null, htmlAttributes: new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Loại nghỉ phép</td>
+                    <td class="sec-value">
+                        @Html.DropDownListFor(model => model.LOAINGHIPHEP, new SelectList(new[] { "Nghi phep nam", "Nghi om", "Nghi viec rieng", "Nghi khong luong", "Nghi thai san" }, Model.LOAINGHIPHEP), new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Từ ngày</td>
+                    <td class="sec-value">
+                        @Html.TextBoxFor(model => model.TUNGAY, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @required = "required" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Đến ngày</td>
+                    <td class="sec-value">
+                        @Html.TextBoxFor(model => model.DENNGAY, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @required = "required" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Lý do xin nghỉ</td>
+                    <td class="sec-value">
+                        @Html.TextAreaFor(model => model.LYDO, new { @class = "form-control", @rows = "3", @style = "height: auto;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Trạng thái duyệt <span class="text-danger">*</span></td>
+                    <td class="sec-value">
+                        @Html.DropDownListFor(model => model.TRANGTHAI, new SelectList(new[] { "Cho duyet", "Da duyet", "Tu choi" }, Model.TRANGTHAI), new { @class = "form-control" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 25px; text-align: right;">
+            <a href="@Url.Action("Index")" class="btn btn-default" style="border: 1px solid #b0bec5; font-weight: 600; margin-right: 8px;">Hủy bỏ</a>
+            <button type="submit" class="btn" style="background-color: #2e7d32; color: #fff; font-weight: bold; padding: 7px 25px;">
+                <i class="glyphicon glyphicon-floppy-disk"></i> Lưu thay đổi
+            </button>
+        </div>
+    }
+</div>

@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - HRM System</title>
+
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/styleAdmin.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @{
+        // Khai báo DUY NHẤT 1 LẦN tại đây để toàn bộ trang dùng chung
+        string ctrl = (ViewContext.RouteData.Values["controller"] ?? "").ToString().ToLower();
+        string currentRole = (Session["Role"] ?? "Admin").ToString();
+    }
+
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-brand">
+                <i class="glyphicon glyphicon-th-list" style="color: #d97706;"></i>
+                <div>HRM <span>PORTAL</span></div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-header">Hệ Thống</li>
+                <li class="@(ctrl == "home" ? "active" : "")">
+                    <a href="@Url.Action("Index", "Home")">
+                        <i class="glyphicon glyphicon-home"></i> Trang chủ
+                    </a>
+                </li>
+                <li class="@(ctrl == "dashboard" ? "active" : "")">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-stats"></i> Dashboard Thống Kê
+                    </a>
+                </li>
+
+                <li class="menu-header">Quản Lý Nghiệp Vụ</li>
+                <!-- Tất cả vai trò đều xem được Nhân viên -->
+                <li class="@(ctrl.Contains("nhanvien") ? "active" : "")">
+                    <a href="@Url.Action("Index", "NHANVIENS")">
+                        <i class="glyphicon glyphicon-user"></i> Quản lý Nhân viên
+                    </a>
+                </li>
+
+                <!-- Chỉ Admin và HR mới quản lý Phòng ban và Hợp đồng -->
+                @if (currentRole == "Admin" || currentRole == "HR")
+                {
+                    <li class="@(ctrl.Contains("phongban") ? "active" : "")">
+                        <a href="@Url.Action("Index", "PHONGBANs")">
+                            <i class="glyphicon glyphicon-folder-open"></i> Phòng ban
+                        </a>
+                    </li>
+                    <li class="@(ctrl.Contains("hopdong") ? "active" : "")">
+                        <a href="@Url.Action("Index", "HOPDONGs")">
+                            <i class="glyphicon glyphicon-briefcase"></i> Hợp đồng lao động
+                        </a>
+                    </li>
+                }
+
+                <!-- Chấm công, Nghỉ phép, KPI: Cả 3 vai trò đều xem/dùng -->
+                <li class="@(ctrl.Contains("chamcong") ? "active" : "")">
+                    <a href="@Url.Action("Index", "CHAMCONGs")">
+                        <i class="glyphicon glyphicon-check"></i> Chấm công
+                    </a>
+                </li>
+                <li class="@(ctrl.Contains("donnghiphep") ? "active" : "")">
+                    <a href="@Url.Action("Index", "DONNGHIPHEPs")">
+                        <i class="glyphicon glyphicon-calendar"></i> Nghỉ phép
+                    </a>
+                </li>
+                <li class="@(ctrl.Contains("danhgiakpi") ? "active" : "")">
+                    <a href="@Url.Action("Index", "DANHGIAKPIs")">
+                        <i class="glyphicon glyphicon-tasks"></i> Đánh giá KPI
+                    </a>
+                </li>
+
+                <li class="menu-header">Báo Cáo & Quản Trị</li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-print"></i> Báo cáo tổng hợp
+                    </a>
+                </li>
+
+                <!-- Chỉ Admin mới thấy menu Quản trị tài khoản -->
+                @if (currentRole == "Admin")
+                {
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-wrench"></i> Phân quyền hệ thống
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="admin-main">
+            <!-- Topbar -->
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button type="button" id="sidebarToggle" class="toggle-btn" title="Thu gọn / Mở rộng menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#263238" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+
+                    <h4 class="admin-topbar-title">
+                        <i class="glyphicon glyphicon-bookmark" style="color: #b45309; margin-right: 4px;"></i>
+                        HỆ THỐNG QUẢN LÝ NHÂN SỰ & DỰ BÁO NGUY CƠ NGHỈ VIỆC
+                    </h4>
+                </div>
+
+                <!-- Hiển thị tên tài khoản đang đăng nhập + Nút Thoát -->
+                <div class="admin-user-profile">
+                    <div class="user-avatar">
+                        @((Session["Role"] != null ? Session["Role"].ToString().Substring(0, Math.Min(2, Session["Role"].ToString().Length)).ToUpper() : "AD"))
+                    </div>
+                    <div>
+                        <div style="font-weight: bold; font-size: 12.5px; color: #263238;">
+                            @(Session["FullName"] ?? "Đặng Minh Hoàng")
+                        </div>
+                        <small style="color: #78909c; font-size: 11px;">
+                            Vai trò: <strong style="color: #b45309;">@(Session["Role"] ?? "Admin")</strong>
+                        </small>
+                    </div>
+                    <a href="@Url.Action("Logout", "TaiKhoan")" class="btn btn-default btn-xs" style="margin-left: 10px; border-color: #cfd8dc; font-weight: 600;" title="Đăng xuất khỏi hệ thống">
+                        <i class="glyphicon glyphicon-log-out"></i> Đăng xuất
+                    </a>
+                </div>
+            </header>
+
+            <!-- Body -->
+            <main class="admin-content">
+                @RenderBody()
+            </main>
+
+            <!-- Footer -->
+            <footer class="admin-footer text-center">
+                <span>&copy; @DateTime.Now.Year - Đề tài Thực tập ngành CNTT | SV: Đặng Minh Hoàng (25TH2507) - Lớp CC25TTH - ĐH Nha Trang</span>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <!-- Script toggle sidebar -->
+    <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var btn = document.getElementById("sidebarToggle");
+                    if (btn) {
+                        btn.addEventListener("click", function () {
+                            var sb = document.getElementById("adminSidebar");
+                            if (sb) {
+                                sb.classList.toggle("collapsed");
+                            }
+                        });
+                    }
+                });
+    </script>
+</body>
+</html>

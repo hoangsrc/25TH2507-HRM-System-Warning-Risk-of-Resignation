@@ -1,0 +1,70 @@
+﻿@model HRMSystem.Models.HOPDONG
+
+@{
+    ViewBag.Title = "Xác Nhận Xóa Hợp Đồng - " + Model.SOHOPDONG;
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading-delete">XÁC NHẬN XÓA HỢP ĐỒNG</h1>
+    <div class="delete-warning-text">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        Bạn có chắc chắn muốn xóa hợp đồng số <strong>@Model.SOHOPDONG</strong> của nhân viên <strong>@(Model.NHANVIEN != null ? Model.NHANVIEN.HOTEN : "")</strong> không?
+    </div>
+
+    <table class="table-exact">
+        <thead>
+            <tr>
+                <th colspan="2" class="sec-title">THÔNG TIN HỢP ĐỒNG</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sec-label">Số hợp đồng</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">@Model.SOHOPDONG</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Nhân viên ký kết</td>
+                <td class="sec-value" style="font-weight: 600;">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.HOTEN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Loại hợp đồng</td>
+                <td class="sec-value">@Model.LOAIHOPDONG</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Thời hạn</td>
+                <td class="sec-value">
+                    Từ @Model.TUNGAY.ToString("dd/MM/yyyy") đến @(Model.DENNGAY.HasValue ? Model.DENNGAY.Value.ToString("dd/MM/yyyy") : "Vô thời hạn")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Mức lương</td>
+                <td class="sec-value" style="font-weight: 700; color: #2e7d32;">
+                    @Model.MUCLUONG.ToString("N0") VNĐ
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Trạng thái</td>
+                <td class="sec-value">@Model.TRANGTHAI</td>
+            </tr>
+        </tbody>
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div style="margin-top: 25px; text-align: right;">
+            <a href="@Url.Action("Index")" class="btn btn-default" style="border: 1px solid #b0bec5; font-weight: 600; margin-right: 8px;">Không, quay lại</a>
+            <button type="submit" class="btn btn-danger" style="font-weight: bold; padding: 7px 25px;">
+                <i class="glyphicon glyphicon-trash"></i> Xác nhận xóa
+            </button>
+        </div>
+    }
+</div>

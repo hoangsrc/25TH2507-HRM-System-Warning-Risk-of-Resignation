@@ -1,0 +1,60 @@
+﻿@model HRMSystem.Models.DANHGIAKPI
+
+@{
+    ViewBag.Title = "Xóa Đánh Giá KPI";
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading-delete">XÁC NHẬN XÓA ĐÁNH GIÁ KPI</h1>
+    <div class="delete-warning-text">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        Bạn có chắc muốn xóa bản ghi đánh giá KPI kỳ <strong>@Model.KYDANHGIA</strong> của nhân viên <strong>@(Model.NHANVIEN != null ? Model.NHANVIEN.HOTEN : "")</strong>?
+    </div>
+
+    <table class="table-exact">
+        <thead>
+            <tr>
+                <th colspan="2" class="sec-title">CHI TIẾT ĐÁNH GIÁ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sec-label">Nhân viên</td>
+                <td class="sec-value" style="font-weight: 600;">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.HOTEN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Kỳ đánh giá</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">@Model.KYDANHGIA</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Điểm tổng kết</td>
+                <td class="sec-value">
+                    @(Model.DIEMTONGKET.HasValue ? Model.DIEMTONGKET.Value.ToString("0.0") : "-") / 5.0
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Nhận xét</td>
+                <td class="sec-value">@Model.NHANXET</td>
+            </tr>
+        </tbody>
+    </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div style="margin-top: 25px; text-align: right;">
+            <a href="@Url.Action("Index")" class="btn btn-default" style="border: 1px solid #b0bec5; font-weight: 600; margin-right: 8px;">Không, quay lại</a>
+            <button type="submit" class="btn btn-danger" style="font-weight: bold; padding: 7px 25px;">
+                <i class="glyphicon glyphicon-trash"></i> Xác nhận xóa vĩnh viễn
+            </button>
+        </div>
+    }
+</div>

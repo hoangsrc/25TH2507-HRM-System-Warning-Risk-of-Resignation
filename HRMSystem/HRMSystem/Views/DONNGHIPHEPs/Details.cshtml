@@ -1,0 +1,81 @@
+﻿@model HRMSystem.Models.DONNGHIPHEP
+
+@{
+    ViewBag.Title = "Chi Tiết Đơn Nghỉ Phép";
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+    <div>
+        <button onclick="window.print()" class="btn btn-sm" style="background-color: #37474f; color: #fff; font-weight: 600; margin-right: 5px;">
+            <i class="glyphicon glyphicon-print"></i> In / Xuất PDF
+        </button>
+        <a href="@Url.Action("Edit", new { id = Model.DONNGHIPHEPID })" class="btn btn-sm" style="background-color: #1e282d; color: #fff; font-weight: 600;">
+            <i class="glyphicon glyphicon-pencil"></i> Sửa / Duyệt đơn
+        </a>
+    </div>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading">ĐƠN XIN NGHỈ PHÉP</h1>
+
+    <table class="table-exact">
+        <!-- 1. THÔNG TIN ĐƠN NGHỈ -->
+        <thead>
+            <tr>
+                <th colspan="2" class="sec-title">CHI TIẾT NGHỈ PHÉP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sec-label">Loại nghỉ phép</td>
+                <td class="sec-value" style="font-weight: 600;">@Model.LOAINGHIPHEP</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Thời gian nghỉ</td>
+                <td class="sec-value" style="font-weight: 600; color: #1a365d;">
+                    Từ ngày @Model.TUNGAY.ToString("dd/MM/yyyy") đến ngày @Model.DENNGAY.ToString("dd/MM/yyyy")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Lý do xin nghỉ</td>
+                <td class="sec-value">@Model.LYDO</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Ngày nộp đơn</td>
+                <td class="sec-value">@Model.NGAYTAO.ToString("dd/MM/yyyy")</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Trạng thái duyệt</td>
+                <td class="sec-value">
+                    <span class="status-badge">@Model.TRANGTHAI</span>
+                </td>
+            </tr>
+
+            <!-- 2. THÔNG TIN NHÂN VIÊN -->
+            <tr>
+                <th colspan="2" class="sec-title">THÔNG TIN NHÂN VIÊN</th>
+            </tr>
+            <tr>
+                <td class="sec-label">Mã nhân viên</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.MANHANVIEN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Họ và tên</td>
+                <td class="sec-value" style="font-weight: 600;">
+                    @(Model.NHANVIEN != null ? Model.NHANVIEN.HOTEN : "-")
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Phòng ban</td>
+                <td class="sec-value">
+                    @(Model.NHANVIEN != null && Model.NHANVIEN.PHONGBAN != null ? Model.NHANVIEN.PHONGBAN.TENPHONGBAN : "-")
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

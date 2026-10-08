@@ -1,0 +1,83 @@
+﻿@model HRMSystem.Models.HOPDONG
+
+@{
+    ViewBag.Title = "Cập Nhật Hợp Đồng - " + Model.SOHOPDONG;
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading">CẬP NHẬT HỢP ĐỒNG LAO ĐỘNG</h1>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.HOPDONGID)
+
+        <table class="table-exact">
+            <thead>
+                <tr>
+                    <th colspan="2" class="sec-title">THÔNG TIN HỢP ĐỒNG</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="sec-label">Số hợp đồng <span class="text-danger">*</span></td>
+                    <td class="sec-value">
+                        @Html.EditorFor(model => model.SOHOPDONG, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.SOHOPDONG, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Nhân viên ký kết <span class="text-danger">*</span></td>
+                    <td class="sec-value">
+                        @Html.DropDownList("NHANVIENID", null, htmlAttributes: new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Loại hợp đồng <span class="text-danger">*</span></td>
+                    <td class="sec-value">
+                        @Html.DropDownListFor(model => model.LOAIHOPDONG, new SelectList(new[] { "Xac dinh thoi han", "Khong xac dinh thoi han", "Thu viec" }, Model.LOAIHOPDONG), new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Từ ngày (Hiệu lực) <span class="text-danger">*</span></td>
+                    <td class="sec-value">
+                        @Html.TextBoxFor(model => model.TUNGAY, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @required = "required" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Đến ngày (Hết hạn)</td>
+                    <td class="sec-value">
+                        @Html.TextBoxFor(model => model.DENNGAY, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                        <small style="color: #64748b;">(Để trống nếu là hợp đồng Không xác định thời hạn)</small>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Mức lương cơ bản <span class="text-danger">*</span></td>
+                    <td class="sec-value">
+                        @Html.EditorFor(model => model.MUCLUONG, new { htmlAttributes = new { @class = "form-control", @type = "number", @required = "required" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sec-label">Trạng thái hợp đồng</td>
+                    <td class="sec-value">
+                        @Html.DropDownListFor(model => model.TRANGTHAI, new SelectList(new[] { "Con hieu luc", "Het hieu luc", "Da cham dut" }, Model.TRANGTHAI), new { @class = "form-control" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 25px; text-align: right;">
+            <a href="@Url.Action("Index")" class="btn btn-default" style="border: 1px solid #b0bec5; font-weight: 600; margin-right: 8px;">Hủy bỏ</a>
+            <button type="submit" class="btn" style="background-color: #2e7d32; color: #fff; font-weight: bold; padding: 7px 25px;">
+                <i class="glyphicon glyphicon-floppy-disk"></i> Lưu thay đổi
+            </button>
+        </div>
+    }
+</div>

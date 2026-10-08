@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\hrmsystem\\models\\hrmmodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\models\\hrmmodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HRMModel.edmx [Diagram1]",
+              "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Models\\HRMModel.edmx",
+              "RelativeDocumentMoniker": "HRMSystem\\Models\\HRMModel.edmx",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Models\\HRMModel.edmx [Diagram1]",
+              "RelativeToolTip": "HRMSystem\\Models\\HRMModel.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2026-10-03T06:11:15.562Z",
+              "EditorCaption": " [Diagram1]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

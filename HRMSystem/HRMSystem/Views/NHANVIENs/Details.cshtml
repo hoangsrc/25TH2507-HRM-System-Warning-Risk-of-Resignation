@@ -1,0 +1,81 @@
+﻿@model HRMSystem.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "Hồ Sơ Nhân Viên - " + Model.MANHANVIEN;
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+    <div>
+        <button onclick="window.print()" class="btn btn-sm" style="background-color: #37474f; color: #fff; font-weight: 600; margin-right: 5px;">
+            <i class="glyphicon glyphicon-print"></i> In / Xuất PDF
+        </button>
+        <a href="@Url.Action("Edit", new { id = Model.NHANVIENID })" class="btn btn-sm" style="background-color: #1e282d; color: #fff; font-weight: 600;">
+            <i class="glyphicon glyphicon-pencil"></i> Chỉnh sửa
+        </a>
+    </div>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading">HỒ SƠ NHÂN VIÊN</h1>
+
+    <table class="table-exact">
+        <thead>
+            <tr>
+                <th colspan="2" class="sec-title">THÔNG TIN CÁ NHÂN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sec-label">Mã nhân viên</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">@Model.MANHANVIEN</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Họ và tên</td>
+                <td class="sec-value" style="font-weight: 600;">@Model.HOTEN</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Giới tính</td>
+                <td class="sec-value">@Model.GIOITINH</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Ngày sinh</td>
+                <td class="sec-value">@(Model.NGAYSINH.HasValue ? Model.NGAYSINH.Value.ToString("dd/MM/yyyy") : "-")</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Số điện thoại</td>
+                <td class="sec-value">@Model.SODIENTHOAI</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Email</td>
+                <td class="sec-value">@Model.EMAIL</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Địa chỉ</td>
+                <td class="sec-value">@Model.DIACHI</td>
+            </tr>
+
+            <tr>
+                <th colspan="2" class="sec-title">VAI TRÒ HIỆN TẠI</th>
+            </tr>
+            <tr>
+                <td class="sec-label">Phòng ban</td>
+                <td class="sec-value">@(Model.PHONGBAN != null ? Model.PHONGBAN.TENPHONGBAN : "-")</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Chức vụ</td>
+                <td class="sec-value">@Model.CHUCVU</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Ngày vào làm</td>
+                <td class="sec-value">@(Model.NGAYVAOLAM.HasValue ? Model.NGAYVAOLAM.Value.ToString("dd/MM/yyyy") : "-")</td>
+            </tr>
+            <tr>
+                <td class="sec-label">Trạng thái</td>
+                <td class="sec-value">@Model.TRANGTHAI</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

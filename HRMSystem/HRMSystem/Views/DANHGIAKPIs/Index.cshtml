@@ -1,0 +1,106 @@
+﻿@model IEnumerable<HRMSystem.Models.DANHGIAKPI>
+
+@{
+    ViewBag.Title = "Đánh Giá KPI Nhân Sự";
+}
+
+<div class="hrm-card">
+    <div class="hrm-header">
+        <div>
+            <h3 style="margin: 0; font-weight: 700; color: #1e282d;">
+                <i class="glyphicon glyphicon-tasks" style="color: #b45309; margin-right: 8px;"></i>KẾT QUẢ ĐÁNH GIÁ KPI
+            </h3>
+            <span style="color: #64748b; font-size: 13px;">
+                Tổng số bản ghi: <strong style="color: #0f172a;">@Model.Count()</strong> lượt đánh giá
+            </span>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="searchInput" onkeyup="searchTable()" class="form-control"
+                   placeholder="🔍 Tìm nhân viên, kỳ đánh giá..."
+                   style="width: 250px; border-radius: 6px; font-size: 13px;">
+
+            <a href="@Url.Action("Create")" class="btn btn-success" style="border-radius: 6px; font-weight: 600; white-space: nowrap;">
+                <i class="glyphicon glyphicon-plus"></i> Đánh giá nhân viên mới
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table hrm-table" id="kpiTable">
+            <thead>
+                <tr>
+                    <th class="nowrap">Nhân viên được đánh giá</th>
+                    <th class="text-center nowrap">Kỳ đánh giá</th>
+                    <th class="text-center nowrap">Hiệu suất</th>
+                    <th class="text-center nowrap">Chuyên cần</th>
+                    <th class="text-center nowrap">Điểm tổng kết</th>
+                    <th>Nhận xét & Góp ý</th>
+                    <th class="text-center nowrap">Ngày đánh giá</th>
+                    <th class="text-center nowrap" style="width: 140px;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="nowrap">
+                            <strong style="color: #0f172a;">
+                                @(item.NHANVIEN != null ? item.NHANVIEN.HOTEN : "-")
+                            </strong>
+                            <small style="color: #64748b; margin-left: 4px;">
+                                (@(item.NHANVIEN != null ? item.NHANVIEN.MANHANVIEN : ""))
+                            </small>
+                        </td>
+                        <td class="text-center nowrap" style="font-weight: 600; color: #1a365d;">
+                            @Html.DisplayFor(modelItem => item.KYDANHGIA)
+                        </td>
+                        <td class="text-center nowrap">
+                            @(item.DIEMHIEUSUAT.HasValue ? item.DIEMHIEUSUAT.Value.ToString("0.0") : "-")
+                        </td>
+                        <td class="text-center nowrap">
+                            @(item.DIEMCHUYENCAN.HasValue ? item.DIEMCHUYENCAN.Value.ToString("0.0") : "-")
+                        </td>
+                        <td class="text-center nowrap">
+                            <span class="status-badge" style="background:#fef3c7; color:#92400e; border-color:#fde68a; font-weight: bold;">
+                                @(item.DIEMTONGKET.HasValue ? item.DIEMTONGKET.Value.ToString("0.0") : "-") / 5.0
+                            </span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NHANXET)
+                        </td>
+                        <td class="text-center nowrap">
+                            @item.NGAYDANHGIA.ToString("dd/MM/yyyy")
+                        </td>
+                        <td class="text-center nowrap">
+                            <a href="@Url.Action("Edit", new { id = item.DANHGIAID })" class="action-btn btn-edit" title="Sửa">Sửa</a>
+                            <a href="@Url.Action("Details", new { id = item.DANHGIAID })" class="action-btn btn-view" title="Xem">Xem</a>
+                            <a href="@Url.Action("Delete", new { id = item.DANHGIAID })" class="action-btn btn-del" title="Xóa">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function searchTable() {
+        var input = document.getElementById("searchInput");
+        var table = document.getElementById("kpiTable");
+
+        if (input instanceof HTMLInputElement && table) {
+            var filter = input.value.toLowerCase();
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var text = tr[i].textContent || tr[i].innerText || "";
+                if (text.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

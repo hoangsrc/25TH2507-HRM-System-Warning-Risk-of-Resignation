@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRM_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHAMCONG">
+    <Key>
+      <PropertyRef Name="CHAMCONGID" />
+    </Key>
+    <Property Name="CHAMCONGID" Type="Int32" Nullable="false" />
+    <Property Name="NHANVIENID" Type="Int32" Nullable="false" />
+    <Property Name="NGAYCHAMCONG" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GIOVAO" Type="DateTime" Precision="3" />
+    <Property Name="GIORA" Type="DateTime" Precision="3" />
+    <Property Name="TRANGTHAI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GHICHU" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_CHAMCONG_GHINHANCH_NHANVIEN" FromRole="CHAMCONG" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="DANHGIAKPI">
+    <Key>
+      <PropertyRef Name="DANHGIAID" />
+    </Key>
+    <Property Name="DANHGIAID" Type="Int32" Nullable="false" />
+    <Property Name="NHANVIENID" Type="Int32" Nullable="false" />
+    <Property Name="KYDANHGIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DIEMHIEUSUAT" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DIEMCHUYENCAN" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DIEMTONGKET" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="NHANXET" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="NGUOIDANHGIA" Type="Int32" />
+    <Property Name="NGAYDANHGIA" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_DANHGIAK_DUOCDANHG_NHANVIEN" FromRole="DANHGIAKPI" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="DONNGHIPHEP">
+    <Key>
+      <PropertyRef Name="DONNGHIPHEPID" />
+    </Key>
+    <Property Name="DONNGHIPHEPID" Type="Int32" Nullable="false" />
+    <Property Name="NHANVIENID" Type="Int32" Nullable="false" />
+    <Property Name="LOAINGHIPHEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TUNGAY" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DENNGAY" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LYDO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TRANGTHAI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NGUOIDUYET" Type="Int32" />
+    <Property Name="NGAYTAO" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_DONNGHIP_NOPDONNGH_NHANVIEN" FromRole="DONNGHIPHEP" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="HOPDONG">
+    <Key>
+      <PropertyRef Name="HOPDONGID" />
+    </Key>
+    <Property Name="HOPDONGID" Type="Int32" Nullable="false" />
+    <Property Name="NHANVIENID" Type="Int32" Nullable="false" />
+    <Property Name="SOHOPDONG" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LOAIHOPDONG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TUNGAY" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DENNGAY" Type="DateTime" Precision="3" />
+    <Property Name="MUCLUONG" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TRANGTHAI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_HOPDONG_KYHOPDONG_NHANVIEN" FromRole="HOPDONG" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="NHANVIENID" />
+    </Key>
+    <Property Name="NHANVIENID" Type="Int32" Nullable="false" />
+    <Property Name="PHONGBANID" Type="Int32" Nullable="false" />
+    <Property Name="MANHANVIEN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HOTEN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
+    <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="SODIENTHOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DIACHI" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CHUCVU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NGAYVAOLAM" Type="DateTime" Precision="3" />
+    <Property Name="TRANGTHAI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CHAMCONGs" Relationship="Self.FK_CHAMCONG_GHINHANCH_NHANVIEN" FromRole="NHANVIEN" ToRole="CHAMCONG" />
+    <NavigationProperty Name="DANHGIAKPIs" Relationship="Self.FK_DANHGIAK_DUOCDANHG_NHANVIEN" FromRole="NHANVIEN" ToRole="DANHGIAKPI" />
+    <NavigationProperty Name="DONNGHIPHEPs" Relationship="Self.FK_DONNGHIP_NOPDONNGH_NHANVIEN" FromRole="NHANVIEN" ToRole="DONNGHIPHEP" />
+    <NavigationProperty Name="HOPDONGs" Relationship="Self.FK_HOPDONG_KYHOPDONG_NHANVIEN" FromRole="NHANVIEN" ToRole="HOPDONG" />
+    <NavigationProperty Name="PHONGBAN" Relationship="Self.FK_NHANVIEN_THUOCPHON_PHONGBAN" FromRole="NHANVIEN" ToRole="PHONGBAN" />
+    <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK_TAIKHOAN_SOHUUTAIK_NHANVIEN" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+  </EntityType>
+  <EntityType Name="PHONGBAN">
+    <Key>
+      <PropertyRef Name="PHONGBANID" />
+    </Key>
+    <Property Name="PHONGBANID" Type="Int32" Nullable="false" />
+    <Property Name="TENPHONGBAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MOTA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DANGHOATDONG" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="NHANVIENs" Relationship="Self.FK_NHANVIEN_THUOCPHON_PHONGBAN" FromRole="PHONGBAN" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="TAIKHOAN">
+    <Key>
+      <PropertyRef Name="TAIKHOANID" />
+    </Key>
+    <Property Name="TAIKHOANID" Type="Int32" Nullable="false" />
+    <Property Name="VAITROID" Type="Int32" Nullable="false" />
+    <Property Name="NHANVIENID" Type="Int32" Nullable="false" />
+    <Property Name="TENDANGNHAP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MATKHAU" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DANGHOATDONG" Type="Boolean" Nullable="false" />
+    <Property Name="NGAYTAO" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_TAIKHOAN_SOHUUTAIK_NHANVIEN" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
+    <NavigationProperty Name="VAITRO" Relationship="Self.FK_TAIKHOAN_GANVAITRO_VAITRO" FromRole="TAIKHOAN" ToRole="VAITRO" />
+  </EntityType>
+  <EntityType Name="VAITRO">
+    <Key>
+      <PropertyRef Name="VAITROID" />
+    </Key>
+    <Property Name="VAITROID" Type="Int32" Nullable="false" />
+    <Property Name="TENVAITRO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MOTA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK_TAIKHOAN_GANVAITRO_VAITRO" FromRole="VAITRO" ToRole="TAIKHOAN" />
+  </EntityType>
+  <Association Name="FK_CHAMCONG_GHINHANCH_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="CHAMCONG" Type="Self.CHAMCONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NHANVIENID" />
+      </Principal>
+      <Dependent Role="CHAMCONG">
+        <PropertyRef Name="NHANVIENID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DANHGIAK_DUOCDANHG_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="DANHGIAKPI" Type="Self.DANHGIAKPI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NHANVIENID" />
+      </Principal>
+      <Dependent Role="DANHGIAKPI">
+        <PropertyRef Name="NHANVIENID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONNGHIP_NOPDONNGH_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="DONNGHIPHEP" Type="Self.DONNGHIPHEP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NHANVIENID" />
+      </Principal>
+      <Dependent Role="DONNGHIPHEP">
+        <PropertyRef Name="NHANVIENID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOPDONG_KYHOPDONG_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NHANVIENID" />
+      </Principal>
+      <Dependent Role="HOPDONG">
+        <PropertyRef Name="NHANVIENID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHANVIEN_THUOCPHON_PHONGBAN">
+    <End Role="PHONGBAN" Type="Self.PHONGBAN" Multiplicity="1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONGBAN">
+        <PropertyRef Name="PHONGBANID" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="PHONGBANID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TAIKHOAN_SOHUUTAIK_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NHANVIENID" />
+      </Principal>
+      <Dependent Role="TAIKHOAN">
+        <PropertyRef Name="NHANVIENID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TAIKHOAN_GANVAITRO_VAITRO">
+    <End Role="VAITRO" Type="Self.VAITRO" Multiplicity="1" />
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VAITRO">
+        <PropertyRef Name="VAITROID" />
+      </Principal>
+      <Dependent Role="TAIKHOAN">
+        <PropertyRef Name="VAITROID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HRM_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHAMCONGs" EntityType="Self.CHAMCONG" />
+    <EntitySet Name="DANHGIAKPIs" EntityType="Self.DANHGIAKPI" />
+    <EntitySet Name="DONNGHIPHEPs" EntityType="Self.DONNGHIPHEP" />
+    <EntitySet Name="HOPDONGs" EntityType="Self.HOPDONG" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="PHONGBANs" EntityType="Self.PHONGBAN" />
+    <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
+    <EntitySet Name="VAITROes" EntityType="Self.VAITRO" />
+    <AssociationSet Name="FK_CHAMCONG_GHINHANCH_NHANVIEN" Association="Self.FK_CHAMCONG_GHINHANCH_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="CHAMCONG" EntitySet="CHAMCONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DANHGIAK_DUOCDANHG_NHANVIEN" Association="Self.FK_DANHGIAK_DUOCDANHG_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="DANHGIAKPI" EntitySet="DANHGIAKPIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONNGHIP_NOPDONNGH_NHANVIEN" Association="Self.FK_DONNGHIP_NOPDONNGH_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="DONNGHIPHEP" EntitySet="DONNGHIPHEPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOPDONG_KYHOPDONG_NHANVIEN" Association="Self.FK_HOPDONG_KYHOPDONG_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="HOPDONG" EntitySet="HOPDONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHANVIEN_THUOCPHON_PHONGBAN" Association="Self.FK_NHANVIEN_THUOCPHON_PHONGBAN">
+      <End Role="PHONGBAN" EntitySet="PHONGBANs" />
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TAIKHOAN_SOHUUTAIK_NHANVIEN" Association="Self.FK_TAIKHOAN_SOHUUTAIK_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TAIKHOAN_GANVAITRO_VAITRO" Association="Self.FK_TAIKHOAN_GANVAITRO_VAITRO">
+      <End Role="VAITRO" EntitySet="VAITROes" />
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="25134437404a410ea3b7558e91d48a54" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="HRM_DBModel.CHAMCONG" Width="1.5" PointX="10.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.DANHGIAKPI" Width="1.5" PointX="10.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.DONNGHIPHEP" Width="1.5" PointX="4" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.HOPDONG" Width="1.5" PointX="4" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.NHANVIEN" Width="1.5" PointX="6.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.PHONGBAN" Width="1.5" PointX="4" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.TAIKHOAN" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.VAITRO" Width="1.5" PointX="10.5" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="HRM_DBModel.FK_CHAMCONG_GHINHANCH_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="HRM_DBModel.FK_DANHGIAK_DUOCDANHG_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="HRM_DBModel.FK_DONNGHIP_NOPDONNGH_NHANVIEN" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="HRM_DBModel.FK_HOPDONG_KYHOPDONG_NHANVIEN" ManuallyRouted="false" >
+          <ConnectorPoint PointX="6.61328334375" PointY="4.980205078125" />
+          <ConnectorPoint PointX="6.61328334375" PointY="6.56745548020491" />
+          <ConnectorPoint PointX="6.3587225052083332" PointY="6.5674554802049094" />
+          <ConnectorPoint PointX="6.1920558385416671" PointY="6.56745548020491" />
+          <ConnectorPoint PointX="3.375" PointY="6.56745548020491" />
+        </AssociationConnector>
+        <AssociationConnector Association="HRM_DBModel.FK_NHANVIEN_THUOCPHON_PHONGBAN" ManuallyRouted="false" />
+        <AssociationConnector Association="HRM_DBModel.FK_TAIKHOAN_SOHUUTAIK_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="HRM_DBModel.FK_TAIKHOAN_GANVAITRO_VAITRO" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

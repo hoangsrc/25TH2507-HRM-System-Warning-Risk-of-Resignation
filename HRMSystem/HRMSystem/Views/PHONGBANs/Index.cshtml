@@ -1,0 +1,100 @@
+﻿@model IEnumerable<HRMSystem.Models.PHONGBAN>
+
+@{
+    ViewBag.Title = "Quản Lý Phòng Ban";
+}
+
+<div class="hrm-card">
+    <div class="hrm-header">
+        <div>
+            <h3 style="margin: 0; font-weight: 700; color: #1e282d;">
+                <i class="glyphicon glyphicon-folder-open" style="color: #b45309; margin-right: 8px;"></i>QUẢN LÝ PHÒNG BAN
+            </h3>
+            <span style="color: #64748b; font-size: 13px;">
+                Tổng số phòng ban: <strong style="color: #0f172a;">@Model.Count()</strong> đơn vị
+            </span>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="searchInput" onkeyup="searchTable()" class="form-control"
+                   placeholder="🔍 Tìm theo tên, mô tả..."
+                   style="width: 250px; border-radius: 6px; font-size: 13px;">
+
+            <a href="@Url.Action("Create")" class="btn btn-success" style="border-radius: 6px; font-weight: 600; white-space: nowrap;">
+                <i class="glyphicon glyphicon-plus"></i> Thêm phòng ban
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table hrm-table" id="departmentTable">
+            <thead>
+                <tr>
+                    <th class="text-center nowrap" style="width: 90px;">Mã PB</th>
+                    <th class="nowrap">Tên phòng ban</th>
+                    <th>Mô tả chức năng</th>
+                    <th class="text-center nowrap" style="width: 140px;">Trạng thái</th>
+                    <th class="text-center nowrap" style="width: 150px;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center nowrap" style="font-weight: 700; color: #2563eb;">
+                            PB00@item.PHONGBANID
+                        </td>
+                        <td class="nowrap" style="font-weight: 600; color: #0f172a;">
+                            @Html.DisplayFor(modelItem => item.TENPHONGBAN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MOTA)
+                        </td>
+                        <td class="text-center nowrap">
+                            @if (item.DANGHOATDONG)
+                            {
+                                <span class="status-badge">Đang hoạt động</span>
+                            }
+                            else
+                            {
+                                <span class="status-badge" style="background:#fee2e2; color:#b91c1c; border-color:#fecaca;">Tạm ngưng</span>
+                            }
+                        </td>
+                        <td class="text-center nowrap">
+                            <a href="@Url.Action("Edit", new { id = item.PHONGBANID })" class="action-btn btn-edit" title="Sửa">
+                                <i class="glyphicon glyphicon-pencil"></i> Sửa
+                            </a>
+                            <a href="@Url.Action("Details", new { id = item.PHONGBANID })" class="action-btn btn-view" title="Xem">
+                                <i class="glyphicon glyphicon-eye-open"></i> Xem
+                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.PHONGBANID })" class="action-btn btn-del" title="Xóa">
+                                <i class="glyphicon glyphicon-trash"></i> Xóa
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+        function searchTable() {
+            var input = document.getElementById("searchInput");
+            var table = document.getElementById("departmentTable");
+
+            if (input instanceof HTMLInputElement && table) {
+                var filter = input.value.toLowerCase();
+                var tr = table.getElementsByTagName("tr");
+
+                for (var i = 1; i < tr.length; i++) {
+                    var text = tr[i].textContent || tr[i].innerText || "";
+                    if (text.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+</script>

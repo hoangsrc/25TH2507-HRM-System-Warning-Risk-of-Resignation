@@ -1,0 +1,57 @@
+﻿@model HRMSystem.Models.PHONGBAN
+
+@{
+    ViewBag.Title = "Chi Tiết Phòng Ban - " + Model.TENPHONGBAN;
+}
+
+<div class="btn-toolbar-custom">
+    <a href="@Url.Action("Index")" class="btn btn-default btn-sm" style="border: 1px solid #b0bec5; font-weight: 600;">
+        <i class="glyphicon glyphicon-arrow-left"></i> Quay lại danh sách
+    </a>
+    <div>
+        <button onclick="window.print()" class="btn btn-sm" style="background-color: #37474f; color: #fff; font-weight: 600; margin-right: 5px;">
+            <i class="glyphicon glyphicon-print"></i> In / Xuất PDF
+        </button>
+        <a href="@Url.Action("Edit", new { id = Model.PHONGBANID })" class="btn btn-sm" style="background-color: #1e282d; color: #fff; font-weight: 600;">
+            <i class="glyphicon glyphicon-pencil"></i> Chỉnh sửa
+        </a>
+    </div>
+</div>
+
+<div class="profile-container">
+    <h1 class="profile-heading">THÔNG TIN PHÒNG BAN</h1>
+
+    <table class="table-exact">
+        <thead>
+            <tr>
+                <th colspan="2" class="sec-title">CHI TIẾT PHÒNG BAN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sec-label">Mã phòng ban</td>
+                <td class="sec-value" style="font-weight: bold; color: #1a365d;">
+                    PB00@(Model.PHONGBANID)
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Tên phòng ban</td>
+                <td class="sec-value" style="font-weight: 600;">
+                    @Model.TENPHONGBAN
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Mô tả chức năng</td>
+                <td class="sec-value">
+                    @Model.MOTA
+                </td>
+            </tr>
+            <tr>
+                <td class="sec-label">Trạng thái</td>
+                <td class="sec-value">
+                    @(Model.DANGHOATDONG ? "Đang hoạt động" : "Tạm ngưng hoạt động")
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

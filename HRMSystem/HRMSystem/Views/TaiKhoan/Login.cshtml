@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Đăng Nhập Hệ Thống HRM";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - Hệ Thống Quản Lý Nhân Sự HRM</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/styleAdmin.css" rel="stylesheet" />
+</head>
+<body class="login-page">
+
+    <div class="login-box">
+        <div class="login-header">
+            <h3>HRM <span>System</span></h3>
+            <p>Hệ thống Quản lý Nhân sự & Hỗ trợ Ra quyết định</p>
+        </div>
+
+        <div class="login-body">
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger" style="font-size: 13px; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                    <i class="glyphicon glyphicon-exclamation-sign"></i> @ViewBag.Error
+                </div>
+            }
+
+            @using (Html.BeginForm("Login", "TaiKhoan", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label style="margin-bottom: 5px;">Tên đăng nhập</label>
+                    <input type="text" name="username" class="form-control" placeholder="Nhập tên tài khoản" required autofocus />
+                </div>
+
+                <div class="form-group" style="margin-bottom: 22px;">
+                    <label style="margin-bottom: 5px;">Mật khẩu</label>
+                    <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu" required />
+                </div>
+
+                <button type="submit" class="btn btn-login">
+                    ĐĂNG NHẬP
+                </button>
+            }
+            <!-- Bảng gợi ý tài khoản mô phỏng -->
+            <!--<div class="demo-accounts">
+        <strong style="color: #0f172a;">Tài khoản thử nghiệm:</strong><br />
+        <b>Admin:</b> admin / 123456 (Toàn quyền)<br />
+        <b>HR:</b> hr / 123456 (Quản lý nhân sự)<br />
+        <b>Manager:</b> manager / 123456 (Quản lý phòng ban)
+    </div>-->
+        </div>
+    </div>
+
+</body>
+</html>
