@@ -1,0 +1,229 @@
+﻿@{
+    ViewBag.Title = "Báo Cáo Thống Kê Nhân Sự";
+}
+
+<!-- Thu vien bieu do -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- TIÊU ĐỀ -->
+<div style="margin-top: 10px; margin-bottom: 20px; border-bottom: 1px solid #cbd5e1; padding-bottom: 10px;">
+    <h3 style="margin: 0 0 4px 0; font-weight: 700; color: #111827; font-size: 20px; text-transform: uppercase;">
+        BÁO CÁO QUẢN TRỊ NHÂN LỰC MAY MẶC
+    </h3>
+    <span style="color: #4b5563; font-size: 13px;">
+        Đơn vị nghiên cứu tham chiếu: <strong>Công ty May mặc Quảng Việt (Củ Chi, TP.HCM)</strong> — Quy mô: <strong>300 lao động</strong>
+    </span>
+</div>
+
+<!-- CÁC DỮ LIỆU SỐ & THÔNG TIN DOANH NGHIỆP -->
+<!-- số liệu tổng quan -->
+<div class="row">
+    <div class="col-md-3">
+        <div class="dash-summary-card">
+            <div class="dash-summary-title">Tổng quy mô lao động</div>
+            <p class="dash-summary-num">@ViewBag.TongNhanSu <span style="font-size: 13px; font-weight: normal; color: #6b7280;">người</span></p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="dash-summary-card">
+            <div class="dash-summary-title">Công nhân xưởng may</div>
+            <p class="dash-summary-num">@ViewBag.CongNhanMay <span style="font-size: 13px; font-weight: normal; color: #6b7280;">công nhân</span></p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="dash-summary-card">
+            <div class="dash-summary-title">Chuyền và tổ sản xuất</div>
+            <p class="dash-summary-num">@ViewBag.SoChuyenMay <span style="font-size: 13px; font-weight: normal; color: #6b7280;">đơn vị</span></p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="dash-summary-card">
+            <div class="dash-summary-title">Hợp đồng còn hiệu lực</div>
+            <p class="dash-summary-num">@ViewBag.HopDongHieuLuc <span style="font-size: 13px; font-weight: normal; color: #6b7280;">hồ sơ</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- Bảng thông số mô hình may mặc -->
+<div class="dash-panel">
+    <div class="dash-panel-header">
+        Thông số vận hành mô hình xưởng may
+    </div>
+    <div style="padding: 0;">
+        <table class="table table-bordered" style="margin-bottom: 0; font-size: 13px;">
+            <tr>
+                <th style="background:#f8fafc; width: 220px; color: #374151;">Địa điểm nhà máy</th>
+                <td>Ấp Bàu Bàng, Xã Trung Lập Hạ, Huyện Củ Chi, TP. Hồ Chí Minh</td>
+            </tr>
+            <tr>
+                <th style="background:#f8fafc; color: #374151;">Cơ cấu phân xưởng</th>
+                <td>Phân xưởng Cắt, Phân xưởng May 01, Phân xưởng May 02, Phân xưởng Hoàn thiện và Đóng gói</td>
+            </tr>
+            <tr>
+                <th style="background:#f8fafc; color: #374151;">Tỷ lệ lao động theo giới tính</th>
+                <td>Khoảng 80% lao động nữ, 20% lao động nam (đặc thù may công nghiệp)</td>
+            </tr>
+            <tr>
+                <th style="background:#f8fafc; color: #374151;">Bố trí lực lượng lao động</th>
+                <td>75% nhân sự thuộc dây chuyền may và tổ cắt trực tiếp; 25% khối hỗ trợ kỹ thuật và văn phòng</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- BIỂU ĐỒ -->
+
+<div style="margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px;">
+    <h4 style="margin: 0; font-weight: 700; color: #1f2937; font-size: 16px; text-transform: uppercase;">
+        BIỂU ĐỒ THỐNG KÊ CHI TIẾT
+    </h4>
+</div>
+
+<!-- Biểu đồ cột -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="dash-panel">
+            <div class="dash-panel-header">
+                Phân bổ công nhân theo chuyền may và tổ sản xuất
+            </div>
+            <div class="dash-panel-body">
+                <div style="height: 300px;">
+                    <canvas id="chuyenChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- biểu đồ tròn -->
+<div class="row">
+    <!-- Biểu đồ tròn 1: Giới tính -->
+    <div class="col-md-6">
+        <div class="dash-panel">
+            <div class="dash-panel-header">
+                Cơ cấu lao động theo giới tính
+            </div>
+            <div class="dash-panel-body">
+                <div style="height: 270px;">
+                    <canvas id="genderChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biểu đồ tròn 2: Hợp đồng -->
+    <div class="col-md-6">
+        <div class="dash-panel">
+            <div class="dash-panel-header">
+                Phân loại hợp đồng lao động
+            </div>
+            <div class="dash-panel-body">
+                <div style="height: 270px;">
+                    <canvas id="contractChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lưu trữ dữ liệu -->
+<div id="chartDataContainer"
+     data-chuyen-labels='@Html.Raw(ViewBag.ChuyenLabels)'
+     data-chuyen-data='@Html.Raw(ViewBag.ChuyenData)'
+     data-gender-labels='@Html.Raw(ViewBag.GenderLabels)'
+     data-gender-data='@Html.Raw(ViewBag.GenderData)'
+     data-contract-labels='@Html.Raw(ViewBag.ContractLabels)'
+     data-contract-data='@Html.Raw(ViewBag.ContractData)'
+     style="display: none;"></div>
+
+<!-- Bieu Do -->
+<script>
+    //ts-nocheck
+    document.addEventListener("DOMContentLoaded", function () {
+        var dataStore = document.getElementById("chartDataContainer");
+        var ChartLib = (new Function("return window.Chart;"))();
+        if (!dataStore || !ChartLib) return;
+
+        var chuyenLabels = JSON.parse(dataStore.getAttribute("data-chuyen-labels") || "[]");
+        var chuyenData = JSON.parse(dataStore.getAttribute("data-chuyen-data") || "[]");
+        var genderLabels = JSON.parse(dataStore.getAttribute("data-gender-labels") || "[]");
+        var genderData = JSON.parse(dataStore.getAttribute("data-gender-data") || "[]");
+        var contractLabels = JSON.parse(dataStore.getAttribute("data-contract-labels") || "[]");
+        var contractData = JSON.parse(dataStore.getAttribute("data-contract-data") || "[]");
+
+        // Biểu đồ cột: Chuyền may
+        var ctxChuyen = document.getElementById('chuyenChart');
+        if (ctxChuyen) {
+            new ChartLib(ctxChuyen, {
+                type: 'bar',
+                data: {
+                    labels: chuyenLabels,
+                    datasets: [{
+                        label: 'Số lượng công nhân',
+                        data: chuyenData,
+                        backgroundColor: '#37474f',
+                        borderColor: '#1f2937',
+                        borderWidth: 1,
+                        borderRadius: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { stepSize: 5 } }
+                    }
+                }
+            });
+        }
+
+        // Biểu đồ tròn 1: Giới tính (Xanh thép sẫm & Đỏ mận đất)
+        var ctxGender = document.getElementById('genderChart');
+        if (ctxGender) {
+            new ChartLib(ctxGender, {
+                type: 'doughnut',
+                data: {
+                    labels: genderLabels,
+                    datasets: [{
+                        data: genderData,
+                        backgroundColor: ['#2b4c7e', '#8c4351'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        // Biểu đồ tròn 2: Hợp đồng
+        var ctxContract = document.getElementById('contractChart');
+        if (ctxContract) {
+            new ChartLib(ctxContract, {
+                type: 'doughnut',
+                data: {
+                    labels: contractLabels,
+                    datasets: [{
+                        data: contractData,
+                        backgroundColor: ['#2d5a43', '#4a5568', '#744210'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+    });
+</script>

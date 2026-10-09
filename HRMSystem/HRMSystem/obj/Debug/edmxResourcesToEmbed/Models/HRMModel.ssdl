@@ -12,6 +12,25 @@
     <Property Name="TRANGTHAI" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="GHICHU" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="CHUCVU">
+    <Key>
+      <PropertyRef Name="CHUCVUID" />
+    </Key>
+    <Property Name="CHUCVUID" Type="int" Nullable="false" />
+    <Property Name="TENCHUCVU" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CAPBAC" Type="varchar" MaxLength="50" />
+    <Property Name="MOTA" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CHUYEN_SANXUAT">
+    <Key>
+      <PropertyRef Name="CHUYENID" />
+    </Key>
+    <Property Name="CHUYENID" Type="int" Nullable="false" />
+    <Property Name="PHANXUONGID" Type="int" Nullable="false" />
+    <Property Name="MACHUYEN" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TENCHUYEN" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DANGHOATDONG" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="DANHGIAKPI">
     <Key>
       <PropertyRef Name="DANHGIAID" />
@@ -40,6 +59,15 @@
     <Property Name="NGUOIDUYET" Type="int" />
     <Property Name="NGAYTAO" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="DONVI_NHAMAY">
+    <Key>
+      <PropertyRef Name="DONVIID" />
+    </Key>
+    <Property Name="DONVIID" Type="int" Nullable="false" />
+    <Property Name="TENDONVI" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DIADIEM" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="DANGHOATDONG" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="HOPDONG">
     <Key>
       <PropertyRef Name="HOPDONGID" />
@@ -58,7 +86,9 @@
       <PropertyRef Name="NHANVIENID" />
     </Key>
     <Property Name="NHANVIENID" Type="int" Nullable="false" />
+    <Property Name="CHUYENID" Type="int" />
     <Property Name="PHONGBANID" Type="int" Nullable="false" />
+    <Property Name="CHUCVUID" Type="int" Nullable="false" />
     <Property Name="MANHANVIEN" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="HOTEN" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="NGAYSINH" Type="datetime" />
@@ -66,9 +96,16 @@
     <Property Name="SODIENTHOAI" Type="varchar" MaxLength="20" />
     <Property Name="EMAIL" Type="varchar" MaxLength="100" />
     <Property Name="DIACHI" Type="varchar" MaxLength="255" />
-    <Property Name="CHUCVU" Type="varchar" MaxLength="100" />
     <Property Name="NGAYVAOLAM" Type="datetime" />
     <Property Name="TRANGTHAI" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PHANXUONG">
+    <Key>
+      <PropertyRef Name="PHANXUONGID" />
+    </Key>
+    <Property Name="PHANXUONGID" Type="int" Nullable="false" />
+    <Property Name="DONVIID" Type="int" Nullable="false" />
+    <Property Name="TENPHANXUONG" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="PHONGBAN">
     <Key>
@@ -84,8 +121,8 @@
       <PropertyRef Name="TAIKHOANID" />
     </Key>
     <Property Name="TAIKHOANID" Type="int" Nullable="false" />
-    <Property Name="VAITROID" Type="int" Nullable="false" />
     <Property Name="NHANVIENID" Type="int" Nullable="false" />
+    <Property Name="VAITROID" Type="int" Nullable="false" />
     <Property Name="TENDANGNHAP" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="MATKHAU" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="EMAIL" Type="varchar" MaxLength="100" />
@@ -109,6 +146,18 @@
       </Principal>
       <Dependent Role="CHAMCONG">
         <PropertyRef Name="NHANVIENID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHUYEN_S_COCHUYENM_PHANXUON">
+    <End Role="PHANXUONG" Type="Self.PHANXUONG" Multiplicity="1" />
+    <End Role="CHUYEN_SANXUAT" Type="Self.CHUYEN_SANXUAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHANXUONG">
+        <PropertyRef Name="PHANXUONGID" />
+      </Principal>
+      <Dependent Role="CHUYEN_SANXUAT">
+        <PropertyRef Name="PHANXUONGID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -148,6 +197,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_NHANVIEN_DAMNHIEMC_CHUCVU">
+    <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUCVU">
+        <PropertyRef Name="CHUCVUID" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="CHUCVUID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHANVIEN_THUOCCHUY_CHUYEN_S">
+    <End Role="CHUYEN_SANXUAT" Type="Self.CHUYEN_SANXUAT" Multiplicity="0..1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUYEN_SANXUAT">
+        <PropertyRef Name="CHUYENID" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="CHUYENID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_NHANVIEN_THUOCPHON_PHONGBAN">
     <End Role="PHONGBAN" Type="Self.PHONGBAN" Multiplicity="1" />
     <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
@@ -157,6 +230,18 @@
       </Principal>
       <Dependent Role="NHANVIEN">
         <PropertyRef Name="PHONGBANID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHANXUON_COPHANXUO_DONVI_NH">
+    <End Role="DONVI_NHAMAY" Type="Self.DONVI_NHAMAY" Multiplicity="1" />
+    <End Role="PHANXUONG" Type="Self.PHANXUONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONVI_NHAMAY">
+        <PropertyRef Name="DONVIID" />
+      </Principal>
+      <Dependent Role="PHANXUONG">
+        <PropertyRef Name="DONVIID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -186,16 +271,24 @@
   </Association>
   <EntityContainer Name="HRM_DBModelStoreContainer">
     <EntitySet Name="CHAMCONG" EntityType="Self.CHAMCONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHUYEN_SANXUAT" EntityType="Self.CHUYEN_SANXUAT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DANHGIAKPI" EntityType="Self.DANHGIAKPI" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DONNGHIPHEP" EntityType="Self.DONNGHIPHEP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DONVI_NHAMAY" EntityType="Self.DONVI_NHAMAY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HOPDONG" EntityType="Self.HOPDONG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHANXUONG" EntityType="Self.PHANXUONG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PHONGBAN" EntityType="Self.PHONGBAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VAITRO" EntityType="Self.VAITRO" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CHAMCONG_GHINHANCH_NHANVIEN" Association="Self.FK_CHAMCONG_GHINHANCH_NHANVIEN">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="CHAMCONG" EntitySet="CHAMCONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHUYEN_S_COCHUYENM_PHANXUON" Association="Self.FK_CHUYEN_S_COCHUYENM_PHANXUON">
+      <End Role="PHANXUONG" EntitySet="PHANXUONG" />
+      <End Role="CHUYEN_SANXUAT" EntitySet="CHUYEN_SANXUAT" />
     </AssociationSet>
     <AssociationSet Name="FK_DANHGIAK_DUOCDANHG_NHANVIEN" Association="Self.FK_DANHGIAK_DUOCDANHG_NHANVIEN">
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
@@ -209,9 +302,21 @@
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
       <End Role="HOPDONG" EntitySet="HOPDONG" />
     </AssociationSet>
+    <AssociationSet Name="FK_NHANVIEN_DAMNHIEMC_CHUCVU" Association="Self.FK_NHANVIEN_DAMNHIEMC_CHUCVU">
+      <End Role="CHUCVU" EntitySet="CHUCVU" />
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHANVIEN_THUOCCHUY_CHUYEN_S" Association="Self.FK_NHANVIEN_THUOCCHUY_CHUYEN_S">
+      <End Role="CHUYEN_SANXUAT" EntitySet="CHUYEN_SANXUAT" />
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+    </AssociationSet>
     <AssociationSet Name="FK_NHANVIEN_THUOCPHON_PHONGBAN" Association="Self.FK_NHANVIEN_THUOCPHON_PHONGBAN">
       <End Role="PHONGBAN" EntitySet="PHONGBAN" />
       <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHANXUON_COPHANXUO_DONVI_NH" Association="Self.FK_PHANXUON_COPHANXUO_DONVI_NH">
+      <End Role="DONVI_NHAMAY" EntitySet="DONVI_NHAMAY" />
+      <End Role="PHANXUONG" EntitySet="PHANXUONG" />
     </AssociationSet>
     <AssociationSet Name="FK_TAIKHOAN_GANVAITRO_VAITRO" Association="Self.FK_TAIKHOAN_GANVAITRO_VAITRO">
       <End Role="VAITRO" EntitySet="VAITRO" />

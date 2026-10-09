@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CHAMCONGsController.cs" />
     <Compile Include="Controllers\DANHGIAKPIsController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DONNGHIPHEPsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HOPDONGsController.cs" />
@@ -143,10 +144,19 @@
     <Compile Include="Models\CHAMCONG.cs">
       <DependentUpon>HRMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CHUCVU.cs">
+      <DependentUpon>HRMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHUYEN_SANXUAT.cs">
+      <DependentUpon>HRMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DANHGIAKPI.cs">
       <DependentUpon>HRMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONNGHIPHEP.cs">
+      <DependentUpon>HRMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DONVI_NHAMAY.cs">
       <DependentUpon>HRMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HOPDONG.cs">
@@ -170,6 +180,9 @@
     <Compile Include="Models\NHANVIEN.cs">
       <DependentUpon>HRMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PHANXUONG.cs">
+      <DependentUpon>HRMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PHONGBAN.cs">
       <DependentUpon>HRMModel.tt</DependentUpon>
     </Compile>
@@ -179,6 +192,7 @@
     <Compile Include="Models\VAITRO.cs">
       <DependentUpon>HRMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PasswordHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +296,7 @@
     <Content Include="Views\DANHGIAKPIs\Edit.cshtml" />
     <Content Include="Views\DANHGIAKPIs\Index.cshtml" />
     <Content Include="Views\TaiKhoan\Login.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

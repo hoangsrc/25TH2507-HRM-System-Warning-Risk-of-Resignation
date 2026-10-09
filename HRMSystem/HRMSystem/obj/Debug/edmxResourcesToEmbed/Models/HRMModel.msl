@@ -61,6 +61,8 @@
     <EntitySetMapping Name="NHANVIENs">
       <EntityTypeMapping TypeName="HRM_DBModel.NHANVIEN">
         <MappingFragment StoreEntitySet="NHANVIEN">
+          <ScalarProperty Name="CHUCVUID" ColumnName="CHUCVUID" />
+          <ScalarProperty Name="CHUYENID" ColumnName="CHUYENID" />
           <ScalarProperty Name="NHANVIENID" ColumnName="NHANVIENID" />
           <ScalarProperty Name="PHONGBANID" ColumnName="PHONGBANID" />
           <ScalarProperty Name="MANHANVIEN" ColumnName="MANHANVIEN" />
@@ -70,7 +72,6 @@
           <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
           <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
           <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
-          <ScalarProperty Name="CHUCVU" ColumnName="CHUCVU" />
           <ScalarProperty Name="NGAYVAOLAM" ColumnName="NGAYVAOLAM" />
           <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
         </MappingFragment>
@@ -106,6 +107,46 @@
           <ScalarProperty Name="VAITROID" ColumnName="VAITROID" />
           <ScalarProperty Name="TENVAITRO" ColumnName="TENVAITRO" />
           <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHUCVUs">
+      <EntityTypeMapping TypeName="HRM_DBModel.CHUCVU">
+        <MappingFragment StoreEntitySet="CHUCVU">
+          <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+          <ScalarProperty Name="CAPBAC" ColumnName="CAPBAC" />
+          <ScalarProperty Name="TENCHUCVU" ColumnName="TENCHUCVU" />
+          <ScalarProperty Name="CHUCVUID" ColumnName="CHUCVUID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHUYEN_SANXUAT">
+      <EntityTypeMapping TypeName="HRM_DBModel.CHUYEN_SANXUAT">
+        <MappingFragment StoreEntitySet="CHUYEN_SANXUAT">
+          <ScalarProperty Name="DANGHOATDONG" ColumnName="DANGHOATDONG" />
+          <ScalarProperty Name="TENCHUYEN" ColumnName="TENCHUYEN" />
+          <ScalarProperty Name="MACHUYEN" ColumnName="MACHUYEN" />
+          <ScalarProperty Name="PHANXUONGID" ColumnName="PHANXUONGID" />
+          <ScalarProperty Name="CHUYENID" ColumnName="CHUYENID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONVI_NHAMAY">
+      <EntityTypeMapping TypeName="HRM_DBModel.DONVI_NHAMAY">
+        <MappingFragment StoreEntitySet="DONVI_NHAMAY">
+          <ScalarProperty Name="DANGHOATDONG" ColumnName="DANGHOATDONG" />
+          <ScalarProperty Name="DIADIEM" ColumnName="DIADIEM" />
+          <ScalarProperty Name="TENDONVI" ColumnName="TENDONVI" />
+          <ScalarProperty Name="DONVIID" ColumnName="DONVIID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHANXUONGs">
+      <EntityTypeMapping TypeName="HRM_DBModel.PHANXUONG">
+        <MappingFragment StoreEntitySet="PHANXUONG">
+          <ScalarProperty Name="TENPHANXUONG" ColumnName="TENPHANXUONG" />
+          <ScalarProperty Name="DONVIID" ColumnName="DONVIID" />
+          <ScalarProperty Name="PHANXUONGID" ColumnName="PHANXUONGID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

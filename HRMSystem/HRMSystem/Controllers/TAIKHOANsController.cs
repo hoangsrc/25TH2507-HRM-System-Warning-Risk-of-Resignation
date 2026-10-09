@@ -21,8 +21,8 @@ namespace HRMSystem.Controllers
             return View();
         }
 
-        // POST: /TaiKhoan/Login 
-        //(Xử lý bấm nút Đăng nhập)
+        // POST: /TaiKhoan/Login
+        // (Xử lý Đăng nhập với cơ chế kiểm tra Password Hash)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(string username, string password)
@@ -33,12 +33,14 @@ namespace HRMSystem.Controllers
                 return View();
             }
 
+            // Tìm tài khoản theo username đang hoạt động
             var user = db.TAIKHOANs
                          .Include(t => t.VAITRO)
                          .Include(t => t.NHANVIEN)
-                         .FirstOrDefault(t => t.TENDANGNHAP == username && t.MATKHAU == password && t.DANGHOATDONG);
+                         .FirstOrDefault(t => t.TENDANGNHAP == username && t.DANGHOATDONG);
 
-            if (user != null)
+            // Kiểm tra mật khẩu bằng thuật toán PBKDF2
+            if (user != null && PasswordHelper.VerifyPassword(password, user.MATKHAU))
             {
                 Session["User"] = user;
                 Session["Username"] = user.TENDANGNHAP;

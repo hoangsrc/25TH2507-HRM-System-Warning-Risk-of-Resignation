@@ -1,17 +1,21 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2017                    */
-/* Created on:     2/10/2026 2:37:20 PM                         */
+/* Created on:     9/10/2026 4:30:04 PM                         */
 /*==============================================================*/
 
-CREATE DATABASE HRM_DB;
-GO
-USE HRM_DB;
-GO
+
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('CHAMCONG') and o.name = 'FK_CHAMCONG_GHINHANCH_NHANVIEN')
 alter table CHAMCONG
    drop constraint FK_CHAMCONG_GHINHANCH_NHANVIEN
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('CHUYEN_SANXUAT') and o.name = 'FK_CHUYEN_S_COCHUYENM_PHANXUON')
+alter table CHUYEN_SANXUAT
+   drop constraint FK_CHUYEN_S_COCHUYENM_PHANXUON
 go
 
 if exists (select 1
@@ -37,9 +41,30 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('NHANVIEN') and o.name = 'FK_NHANVIEN_DAMNHIEMC_CHUCVU')
+alter table NHANVIEN
+   drop constraint FK_NHANVIEN_DAMNHIEMC_CHUCVU
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('NHANVIEN') and o.name = 'FK_NHANVIEN_THUOCCHUY_CHUYEN_S')
+alter table NHANVIEN
+   drop constraint FK_NHANVIEN_THUOCCHUY_CHUYEN_S
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('NHANVIEN') and o.name = 'FK_NHANVIEN_THUOCPHON_PHONGBAN')
 alter table NHANVIEN
    drop constraint FK_NHANVIEN_THUOCPHON_PHONGBAN
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PHANXUONG') and o.name = 'FK_PHANXUON_COPHANXUO_DONVI_NH')
+alter table PHANXUONG
+   drop constraint FK_PHANXUON_COPHANXUO_DONVI_NH
 go
 
 if exists (select 1
@@ -70,6 +95,29 @@ if exists (select 1
            where  id = object_id('CHAMCONG')
             and   type = 'U')
    drop table CHAMCONG
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('CHUCVU')
+            and   type = 'U')
+   drop table CHUCVU
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('CHUYEN_SANXUAT')
+            and   name  = 'COCHUYENMAY_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index CHUYEN_SANXUAT.COCHUYENMAY_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('CHUYEN_SANXUAT')
+            and   type = 'U')
+   drop table CHUYEN_SANXUAT
 go
 
 if exists (select 1
@@ -105,6 +153,13 @@ if exists (select 1
 go
 
 if exists (select 1
+            from  sysobjects
+           where  id = object_id('DONVI_NHAMAY')
+            and   type = 'U')
+   drop table DONVI_NHAMAY
+go
+
+if exists (select 1
             from  sysindexes
            where  id    = object_id('HOPDONG')
             and   name  = 'KYHOPDONG_FK'
@@ -123,10 +178,19 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('NHANVIEN')
-            and   name  = 'SOHUUTAIKHOAN_FK'
+            and   name  = 'THUOCCHUYENMAY_FK'
             and   indid > 0
             and   indid < 255)
-   drop index NHANVIEN.SOHUUTAIKHOAN_FK
+   drop index NHANVIEN.THUOCCHUYENMAY_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('NHANVIEN')
+            and   name  = 'DAMNHIEMCHUCVU_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index NHANVIEN.DAMNHIEMCHUCVU_FK
 go
 
 if exists (select 1
@@ -146,6 +210,22 @@ if exists (select 1
 go
 
 if exists (select 1
+            from  sysindexes
+           where  id    = object_id('PHANXUONG')
+            and   name  = 'COPHANXUONG_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index PHANXUONG.COPHANXUONG_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('PHANXUONG')
+            and   type = 'U')
+   drop table PHANXUONG
+go
+
+if exists (select 1
             from  sysobjects
            where  id = object_id('PHONGBAN')
             and   type = 'U')
@@ -155,10 +235,10 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('TAIKHOAN')
-            and   name  = 'SOHUUTAIKHOAN2_FK'
+            and   name  = 'SOHUUTAIKHOAN_FK'
             and   indid > 0
             and   indid < 255)
-   drop index TAIKHOAN.SOHUUTAIKHOAN2_FK
+   drop index TAIKHOAN.SOHUUTAIKHOAN_FK
 go
 
 if exists (select 1
@@ -207,6 +287,41 @@ go
 
 
 create nonclustered index GHINHANCHAMCONG_FK on CHAMCONG (NHANVIENID ASC)
+go
+
+/*==============================================================*/
+/* Table: CHUCVU                                                */
+/*==============================================================*/
+create table CHUCVU (
+   CHUCVUID             int                  not null,
+   TENCHUCVU            varchar(100)         not null,
+   CAPBAC               varchar(50)          null,
+   MOTA                 varchar(255)         null,
+   constraint PK_CHUCVU primary key (CHUCVUID)
+)
+go
+
+/*==============================================================*/
+/* Table: CHUYEN_SANXUAT                                        */
+/*==============================================================*/
+create table CHUYEN_SANXUAT (
+   CHUYENID             int                  not null,
+   PHANXUONGID          int                  not null,
+   MACHUYEN             varchar(20)          not null,
+   TENCHUYEN            varchar(100)         not null,
+   DANGHOATDONG         bit                  not null,
+   constraint PK_CHUYEN_SANXUAT primary key (CHUYENID)
+)
+go
+
+/*==============================================================*/
+/* Index: COCHUYENMAY_FK                                        */
+/*==============================================================*/
+
+
+
+
+create nonclustered index COCHUYENMAY_FK on CHUYEN_SANXUAT (PHANXUONGID ASC)
 go
 
 /*==============================================================*/
@@ -264,6 +379,18 @@ create nonclustered index NOPDONNGHIPHEP_FK on DONNGHIPHEP (NHANVIENID ASC)
 go
 
 /*==============================================================*/
+/* Table: DONVI_NHAMAY                                          */
+/*==============================================================*/
+create table DONVI_NHAMAY (
+   DONVIID              int                  not null,
+   TENDONVI             varchar(100)         not null,
+   DIADIEM              varchar(255)         not null,
+   DANGHOATDONG         bit                  not null,
+   constraint PK_DONVI_NHAMAY primary key (DONVIID)
+)
+go
+
+/*==============================================================*/
 /* Table: HOPDONG                                               */
 /*==============================================================*/
 create table HOPDONG (
@@ -294,7 +421,9 @@ go
 /*==============================================================*/
 create table NHANVIEN (
    NHANVIENID           int                  not null,
+   CHUYENID             int                  null,
    PHONGBANID           int                  not null,
+   CHUCVUID             int                  not null,
    MANHANVIEN           varchar(20)          not null,
    HOTEN                varchar(100)         not null,
    NGAYSINH             datetime             null,
@@ -302,7 +431,6 @@ create table NHANVIEN (
    SODIENTHOAI          varchar(20)          null,
    EMAIL                varchar(100)         null,
    DIACHI               varchar(255)         null,
-   CHUCVU               varchar(100)         null,
    NGAYVAOLAM           datetime             null,
    TRANGTHAI            varchar(30)          not null,
    constraint PK_NHANVIEN primary key (NHANVIENID)
@@ -320,14 +448,45 @@ create nonclustered index THUOCPHONGBAN_FK on NHANVIEN (PHONGBANID ASC)
 go
 
 /*==============================================================*/
-/* Index: SOHUUTAIKHOAN_FK                                      */
+/* Index: DAMNHIEMCHUCVU_FK                                     */
 /*==============================================================*/
 
 
 
 
---create nonclustered index SOHUUTAIKHOAN_FK on NHANVIEN
---go
+create nonclustered index DAMNHIEMCHUCVU_FK on NHANVIEN (CHUCVUID ASC)
+go
+
+/*==============================================================*/
+/* Index: THUOCCHUYENMAY_FK                                     */
+/*==============================================================*/
+
+
+
+
+create nonclustered index THUOCCHUYENMAY_FK on NHANVIEN (CHUYENID ASC)
+go
+
+/*==============================================================*/
+/* Table: PHANXUONG                                             */
+/*==============================================================*/
+create table PHANXUONG (
+   PHANXUONGID          int                  not null,
+   DONVIID              int                  not null,
+   TENPHANXUONG         varchar(100)         not null,
+   constraint PK_PHANXUONG primary key (PHANXUONGID)
+)
+go
+
+/*==============================================================*/
+/* Index: COPHANXUONG_FK                                        */
+/*==============================================================*/
+
+
+
+
+create nonclustered index COPHANXUONG_FK on PHANXUONG (DONVIID ASC)
+go
 
 /*==============================================================*/
 /* Table: PHONGBAN                                              */
@@ -346,8 +505,8 @@ go
 /*==============================================================*/
 create table TAIKHOAN (
    TAIKHOANID           int                  not null,
-   VAITROID             int                  not null,
    NHANVIENID           int                  not null,
+   VAITROID             int                  not null,
    TENDANGNHAP          varchar(50)          not null,
    MATKHAU              varchar(255)         not null,
    EMAIL                varchar(100)         null,
@@ -368,13 +527,13 @@ create nonclustered index GANVAITRO_FK on TAIKHOAN (VAITROID ASC)
 go
 
 /*==============================================================*/
-/* Index: SOHUUTAIKHOAN2_FK                                     */
+/* Index: SOHUUTAIKHOAN_FK                                      */
 /*==============================================================*/
 
 
 
 
-create nonclustered index SOHUUTAIKHOAN2_FK on TAIKHOAN (NHANVIENID ASC)
+create nonclustered index SOHUUTAIKHOAN_FK on TAIKHOAN (NHANVIENID ASC)
 go
 
 /*==============================================================*/
@@ -393,6 +552,11 @@ alter table CHAMCONG
       references NHANVIEN (NHANVIENID)
 go
 
+alter table CHUYEN_SANXUAT
+   add constraint FK_CHUYEN_S_COCHUYENM_PHANXUON foreign key (PHANXUONGID)
+      references PHANXUONG (PHANXUONGID)
+go
+
 alter table DANHGIAKPI
    add constraint FK_DANHGIAK_DUOCDANHG_NHANVIEN foreign key (NHANVIENID)
       references NHANVIEN (NHANVIENID)
@@ -409,8 +573,23 @@ alter table HOPDONG
 go
 
 alter table NHANVIEN
+   add constraint FK_NHANVIEN_DAMNHIEMC_CHUCVU foreign key (CHUCVUID)
+      references CHUCVU (CHUCVUID)
+go
+
+alter table NHANVIEN
+   add constraint FK_NHANVIEN_THUOCCHUY_CHUYEN_S foreign key (CHUYENID)
+      references CHUYEN_SANXUAT (CHUYENID)
+go
+
+alter table NHANVIEN
    add constraint FK_NHANVIEN_THUOCPHON_PHONGBAN foreign key (PHONGBANID)
       references PHONGBAN (PHONGBANID)
+go
+
+alter table PHANXUONG
+   add constraint FK_PHANXUON_COPHANXUO_DONVI_NH foreign key (DONVIID)
+      references DONVI_NHAMAY (DONVIID)
 go
 
 alter table TAIKHOAN

@@ -36,10 +36,12 @@ namespace HRMSystem.Controllers
             return View(nHANVIEN);
         }
 
-        // GET: NHANVIENs/Create
+        // GET: NHANVIENS/Create
         public ActionResult Create()
         {
             ViewBag.PHONGBANID = new SelectList(db.PHONGBANs, "PHONGBANID", "TENPHONGBAN");
+            ViewBag.CHUCVUID = new SelectList(db.CHUCVUs, "CHUCVUID", "TENCHUCVU");
+            ViewBag.CHUYENID = new SelectList(db.CHUYEN_SANXUAT, "CHUYENID", "TENCHUYEN");
             return View();
         }
 
@@ -48,7 +50,7 @@ namespace HRMSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NHANVIENID,PHONGBANID,MANHANVIEN,HOTEN,NGAYSINH,GIOITINH,SODIENTHOAI,EMAIL,DIACHI,CHUCVU,NGAYVAOLAM,TRANGTHAI")] NHANVIEN nHANVIEN)
+        public ActionResult Create([Bind(Include = "NHANVIENID,PHONGBANID,CHUYENID,CHUCVUID,MANHANVIEN,HOTEN,NGAYSINH,GIOITINH,SODIENTHOAI,EMAIL,DIACHI,NGAYVAOLAM,TRANGTHAI")] NHANVIEN nHANVIEN)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +75,12 @@ namespace HRMSystem.Controllers
             {
                 return HttpNotFound();
             }
+
+            // Lấy danh sách 3 bảng để đổ vào 3 ô chọn (dropdown) trên form Sửa
             ViewBag.PHONGBANID = new SelectList(db.PHONGBANs, "PHONGBANID", "TENPHONGBAN", nHANVIEN.PHONGBANID);
+            ViewBag.CHUCVUID = new SelectList(db.CHUCVUs, "CHUCVUID", "TENCHUCVU", nHANVIEN.CHUCVUID);
+            ViewBag.CHUYENID = new SelectList(db.CHUYEN_SANXUAT, "CHUYENID", "TENCHUYEN", nHANVIEN.CHUYENID);
+
             return View(nHANVIEN);
         }
 
@@ -82,7 +89,7 @@ namespace HRMSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NHANVIENID,PHONGBANID,MANHANVIEN,HOTEN,NGAYSINH,GIOITINH,SODIENTHOAI,EMAIL,DIACHI,CHUCVU,NGAYVAOLAM,TRANGTHAI")] NHANVIEN nHANVIEN)
+        public ActionResult Edit([Bind(Include = "NHANVIENID,PHONGBANID,CHUYENID,CHUCVUID,MANHANVIEN,HOTEN,NGAYSINH,GIOITINH,SODIENTHOAI,EMAIL,DIACHI,NGAYVAOLAM,TRANGTHAI")] NHANVIEN nHANVIEN)
         {
             if (ModelState.IsValid)
             {

@@ -33,5 +33,9 @@ namespace HRMSystem.Models
         public virtual DbSet<PHONGBAN> PHONGBANs { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public virtual DbSet<VAITRO> VAITROes { get; set; }
+        public virtual DbSet<CHUCVU> CHUCVUs { get; set; }
+        public virtual DbSet<CHUYEN_SANXUAT> CHUYEN_SANXUAT { get; set; }
+        public virtual DbSet<DONVI_NHAMAY> DONVI_NHAMAY { get; set; }
+        public virtual DbSet<PHANXUONG> PHANXUONGs { get; set; }
     }
 }

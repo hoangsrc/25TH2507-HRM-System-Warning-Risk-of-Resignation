@@ -68,7 +68,7 @@
                             </span>
                         </td>
                         <td class="nowrap">
-                            @Html.DisplayFor(modelItem => item.CHUCVU)
+                            @(item.CHUCVU != null ? item.CHUCVU.TENCHUCVU + " (" + item.CHUCVU.CAPBAC + ")" : "-")
                         </td>
                         <td class="nowrap">
                             @Html.DisplayFor(modelItem => item.SODIENTHOAI)

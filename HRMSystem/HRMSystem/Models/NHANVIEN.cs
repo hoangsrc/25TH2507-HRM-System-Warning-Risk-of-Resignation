@@ -33,9 +33,10 @@ namespace HRMSystem.Models
         public string SODIENTHOAI { get; set; }
         public string EMAIL { get; set; }
         public string DIACHI { get; set; }
-        public string CHUCVU { get; set; }
         public Nullable<System.DateTime> NGAYVAOLAM { get; set; }
         public string TRANGTHAI { get; set; }
+        public Nullable<int> CHUYENID { get; set; }
+        public int CHUCVUID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHAMCONG> CHAMCONGs { get; set; }
@@ -48,5 +49,7 @@ namespace HRMSystem.Models
         public virtual PHONGBAN PHONGBAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
+        public virtual CHUCVU CHUCVU { get; set; }
+        public virtual CHUYEN_SANXUAT CHUYEN_SANXUAT { get; set; }
     }
 }

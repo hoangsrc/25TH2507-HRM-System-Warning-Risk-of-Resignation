@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HRM_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HRM_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHAMCONG">
           <Key>
             <PropertyRef Name="CHAMCONGID" />
@@ -16,6 +16,25 @@
           <Property Name="GIORA" Type="datetime" />
           <Property Name="TRANGTHAI" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="GHICHU" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CHUCVU">
+          <Key>
+            <PropertyRef Name="CHUCVUID" />
+          </Key>
+          <Property Name="CHUCVUID" Type="int" Nullable="false" />
+          <Property Name="TENCHUCVU" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CAPBAC" Type="varchar" MaxLength="50" />
+          <Property Name="MOTA" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CHUYEN_SANXUAT">
+          <Key>
+            <PropertyRef Name="CHUYENID" />
+          </Key>
+          <Property Name="CHUYENID" Type="int" Nullable="false" />
+          <Property Name="PHANXUONGID" Type="int" Nullable="false" />
+          <Property Name="MACHUYEN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TENCHUYEN" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DANGHOATDONG" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DANHGIAKPI">
           <Key>
@@ -45,6 +64,15 @@
           <Property Name="NGUOIDUYET" Type="int" />
           <Property Name="NGAYTAO" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="DONVI_NHAMAY">
+          <Key>
+            <PropertyRef Name="DONVIID" />
+          </Key>
+          <Property Name="DONVIID" Type="int" Nullable="false" />
+          <Property Name="TENDONVI" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DIADIEM" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DANGHOATDONG" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="HOPDONG">
           <Key>
             <PropertyRef Name="HOPDONGID" />
@@ -63,7 +91,9 @@
             <PropertyRef Name="NHANVIENID" />
           </Key>
           <Property Name="NHANVIENID" Type="int" Nullable="false" />
+          <Property Name="CHUYENID" Type="int" />
           <Property Name="PHONGBANID" Type="int" Nullable="false" />
+          <Property Name="CHUCVUID" Type="int" Nullable="false" />
           <Property Name="MANHANVIEN" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="HOTEN" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="NGAYSINH" Type="datetime" />
@@ -71,9 +101,16 @@
           <Property Name="SODIENTHOAI" Type="varchar" MaxLength="20" />
           <Property Name="EMAIL" Type="varchar" MaxLength="100" />
           <Property Name="DIACHI" Type="varchar" MaxLength="255" />
-          <Property Name="CHUCVU" Type="varchar" MaxLength="100" />
           <Property Name="NGAYVAOLAM" Type="datetime" />
           <Property Name="TRANGTHAI" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PHANXUONG">
+          <Key>
+            <PropertyRef Name="PHANXUONGID" />
+          </Key>
+          <Property Name="PHANXUONGID" Type="int" Nullable="false" />
+          <Property Name="DONVIID" Type="int" Nullable="false" />
+          <Property Name="TENPHANXUONG" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="PHONGBAN">
           <Key>
@@ -89,8 +126,8 @@
             <PropertyRef Name="TAIKHOANID" />
           </Key>
           <Property Name="TAIKHOANID" Type="int" Nullable="false" />
-          <Property Name="VAITROID" Type="int" Nullable="false" />
           <Property Name="NHANVIENID" Type="int" Nullable="false" />
+          <Property Name="VAITROID" Type="int" Nullable="false" />
           <Property Name="TENDANGNHAP" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MATKHAU" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="100" />
@@ -114,6 +151,18 @@
             </Principal>
             <Dependent Role="CHAMCONG">
               <PropertyRef Name="NHANVIENID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUYEN_S_COCHUYENM_PHANXUON">
+          <End Role="PHANXUONG" Type="Self.PHANXUONG" Multiplicity="1" />
+          <End Role="CHUYEN_SANXUAT" Type="Self.CHUYEN_SANXUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHANXUONG">
+              <PropertyRef Name="PHANXUONGID" />
+            </Principal>
+            <Dependent Role="CHUYEN_SANXUAT">
+              <PropertyRef Name="PHANXUONGID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -153,6 +202,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_NHANVIEN_DAMNHIEMC_CHUCVU">
+          <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUCVU">
+              <PropertyRef Name="CHUCVUID" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="CHUCVUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHANVIEN_THUOCCHUY_CHUYEN_S">
+          <End Role="CHUYEN_SANXUAT" Type="Self.CHUYEN_SANXUAT" Multiplicity="0..1" />
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYEN_SANXUAT">
+              <PropertyRef Name="CHUYENID" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="CHUYENID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NHANVIEN_THUOCPHON_PHONGBAN">
           <End Role="PHONGBAN" Type="Self.PHONGBAN" Multiplicity="1" />
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
@@ -162,6 +235,18 @@
             </Principal>
             <Dependent Role="NHANVIEN">
               <PropertyRef Name="PHONGBANID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHANXUON_COPHANXUO_DONVI_NH">
+          <End Role="DONVI_NHAMAY" Type="Self.DONVI_NHAMAY" Multiplicity="1" />
+          <End Role="PHANXUONG" Type="Self.PHANXUONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVI_NHAMAY">
+              <PropertyRef Name="DONVIID" />
+            </Principal>
+            <Dependent Role="PHANXUONG">
+              <PropertyRef Name="DONVIID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -191,16 +276,24 @@
         </Association>
         <EntityContainer Name="HRM_DBModelStoreContainer">
           <EntitySet Name="CHAMCONG" EntityType="Self.CHAMCONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHUYEN_SANXUAT" EntityType="Self.CHUYEN_SANXUAT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DANHGIAKPI" EntityType="Self.DANHGIAKPI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONNGHIPHEP" EntityType="Self.DONNGHIPHEP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONVI_NHAMAY" EntityType="Self.DONVI_NHAMAY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOPDONG" EntityType="Self.HOPDONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHANXUONG" EntityType="Self.PHANXUONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHONGBAN" EntityType="Self.PHONGBAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VAITRO" EntityType="Self.VAITRO" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CHAMCONG_GHINHANCH_NHANVIEN" Association="Self.FK_CHAMCONG_GHINHANCH_NHANVIEN">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="CHAMCONG" EntitySet="CHAMCONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUYEN_S_COCHUYENM_PHANXUON" Association="Self.FK_CHUYEN_S_COCHUYENM_PHANXUON">
+            <End Role="PHANXUONG" EntitySet="PHANXUONG" />
+            <End Role="CHUYEN_SANXUAT" EntitySet="CHUYEN_SANXUAT" />
           </AssociationSet>
           <AssociationSet Name="FK_DANHGIAK_DUOCDANHG_NHANVIEN" Association="Self.FK_DANHGIAK_DUOCDANHG_NHANVIEN">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
@@ -214,9 +307,21 @@
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="HOPDONG" EntitySet="HOPDONG" />
           </AssociationSet>
+          <AssociationSet Name="FK_NHANVIEN_DAMNHIEMC_CHUCVU" Association="Self.FK_NHANVIEN_DAMNHIEMC_CHUCVU">
+            <End Role="CHUCVU" EntitySet="CHUCVU" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHANVIEN_THUOCCHUY_CHUYEN_S" Association="Self.FK_NHANVIEN_THUOCCHUY_CHUYEN_S">
+            <End Role="CHUYEN_SANXUAT" EntitySet="CHUYEN_SANXUAT" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+          </AssociationSet>
           <AssociationSet Name="FK_NHANVIEN_THUOCPHON_PHONGBAN" Association="Self.FK_NHANVIEN_THUOCPHON_PHONGBAN">
             <End Role="PHONGBAN" EntitySet="PHONGBAN" />
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHANXUON_COPHANXUO_DONVI_NH" Association="Self.FK_PHANXUON_COPHANXUO_DONVI_NH">
+            <End Role="DONVI_NHAMAY" EntitySet="DONVI_NHAMAY" />
+            <End Role="PHANXUONG" EntitySet="PHANXUONG" />
           </AssociationSet>
           <AssociationSet Name="FK_TAIKHOAN_GANVAITRO_VAITRO" Association="Self.FK_TAIKHOAN_GANVAITRO_VAITRO">
             <End Role="VAITRO" EntitySet="VAITRO" />
@@ -227,8 +332,7 @@
             <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRM_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -302,7 +406,6 @@
           <Property Name="SODIENTHOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DIACHI" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="CHUCVU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="NGAYVAOLAM" Type="DateTime" Precision="3" />
           <Property Name="TRANGTHAI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CHAMCONGs" Relationship="Self.FK_CHAMCONG_GHINHANCH_NHANVIEN" FromRole="NHANVIEN" ToRole="CHAMCONG" />
@@ -311,6 +414,10 @@
           <NavigationProperty Name="HOPDONGs" Relationship="Self.FK_HOPDONG_KYHOPDONG_NHANVIEN" FromRole="NHANVIEN" ToRole="HOPDONG" />
           <NavigationProperty Name="PHONGBAN" Relationship="Self.FK_NHANVIEN_THUOCPHON_PHONGBAN" FromRole="NHANVIEN" ToRole="PHONGBAN" />
           <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK_TAIKHOAN_SOHUUTAIK_NHANVIEN" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+          <Property Name="CHUYENID" Type="Int32" />
+          <Property Name="CHUCVUID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CHUCVU" Relationship="HRM_DBModel.FK_NHANVIEN_DAMNHIEMC_CHUCVU" FromRole="NHANVIEN" ToRole="CHUCVU" />
+          <NavigationProperty Name="CHUYEN_SANXUAT" Relationship="HRM_DBModel.FK_NHANVIEN_THUOCCHUY_CHUYEN_S" FromRole="NHANVIEN" ToRole="CHUYEN_SANXUAT" />
         </EntityType>
         <EntityType Name="PHONGBAN">
           <Key>
@@ -467,7 +574,117 @@
             <End Role="VAITRO" EntitySet="VAITROes" />
             <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
           </AssociationSet>
+          <EntitySet Name="CHUCVUs" EntityType="HRM_DBModel.CHUCVU" />
+          <EntitySet Name="CHUYEN_SANXUAT" EntityType="HRM_DBModel.CHUYEN_SANXUAT" />
+          <EntitySet Name="DONVI_NHAMAY" EntityType="HRM_DBModel.DONVI_NHAMAY" />
+          <EntitySet Name="PHANXUONGs" EntityType="HRM_DBModel.PHANXUONG" />
+          <AssociationSet Name="FK_NHANVIEN_DAMNHIEMC_CHUCVU" Association="HRM_DBModel.FK_NHANVIEN_DAMNHIEMC_CHUCVU">
+            <End Role="CHUCVU" EntitySet="CHUCVUs" />
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUYEN_S_COCHUYENM_PHANXUON" Association="HRM_DBModel.FK_CHUYEN_S_COCHUYENM_PHANXUON">
+            <End Role="PHANXUONG" EntitySet="PHANXUONGs" />
+            <End Role="CHUYEN_SANXUAT" EntitySet="CHUYEN_SANXUAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NHANVIEN_THUOCCHUY_CHUYEN_S" Association="HRM_DBModel.FK_NHANVIEN_THUOCCHUY_CHUYEN_S">
+            <End Role="CHUYEN_SANXUAT" EntitySet="CHUYEN_SANXUAT" />
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHANXUON_COPHANXUO_DONVI_NH" Association="HRM_DBModel.FK_PHANXUON_COPHANXUO_DONVI_NH">
+            <End Role="DONVI_NHAMAY" EntitySet="DONVI_NHAMAY" />
+            <End Role="PHANXUONG" EntitySet="PHANXUONGs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="CHUCVU">
+          <Key>
+            <PropertyRef Name="CHUCVUID" />
+          </Key>
+          <Property Name="CHUCVUID" Type="Int32" Nullable="false" />
+          <Property Name="TENCHUCVU" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CAPBAC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MOTA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NHANVIENs" Relationship="HRM_DBModel.FK_NHANVIEN_DAMNHIEMC_CHUCVU" FromRole="CHUCVU" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="CHUYEN_SANXUAT">
+          <Key>
+            <PropertyRef Name="CHUYENID" />
+          </Key>
+          <Property Name="CHUYENID" Type="Int32" Nullable="false" />
+          <Property Name="PHANXUONGID" Type="Int32" Nullable="false" />
+          <Property Name="MACHUYEN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TENCHUYEN" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DANGHOATDONG" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PHANXUONG" Relationship="HRM_DBModel.FK_CHUYEN_S_COCHUYENM_PHANXUON" FromRole="CHUYEN_SANXUAT" ToRole="PHANXUONG" />
+          <NavigationProperty Name="NHANVIENs" Relationship="HRM_DBModel.FK_NHANVIEN_THUOCCHUY_CHUYEN_S" FromRole="CHUYEN_SANXUAT" ToRole="NHANVIEN" />
+        </EntityType>
+        <EntityType Name="DONVI_NHAMAY">
+          <Key>
+            <PropertyRef Name="DONVIID" />
+          </Key>
+          <Property Name="DONVIID" Type="Int32" Nullable="false" />
+          <Property Name="TENDONVI" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DIADIEM" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DANGHOATDONG" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PHANXUONGs" Relationship="HRM_DBModel.FK_PHANXUON_COPHANXUO_DONVI_NH" FromRole="DONVI_NHAMAY" ToRole="PHANXUONG" />
+        </EntityType>
+        <EntityType Name="PHANXUONG">
+          <Key>
+            <PropertyRef Name="PHANXUONGID" />
+          </Key>
+          <Property Name="PHANXUONGID" Type="Int32" Nullable="false" />
+          <Property Name="DONVIID" Type="Int32" Nullable="false" />
+          <Property Name="TENPHANXUONG" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CHUYEN_SANXUAT" Relationship="HRM_DBModel.FK_CHUYEN_S_COCHUYENM_PHANXUON" FromRole="PHANXUONG" ToRole="CHUYEN_SANXUAT" />
+          <NavigationProperty Name="DONVI_NHAMAY" Relationship="HRM_DBModel.FK_PHANXUON_COPHANXUO_DONVI_NH" FromRole="PHANXUONG" ToRole="DONVI_NHAMAY" />
+        </EntityType>
+        <Association Name="FK_NHANVIEN_DAMNHIEMC_CHUCVU">
+          <End Type="HRM_DBModel.CHUCVU" Role="CHUCVU" Multiplicity="1" />
+          <End Type="HRM_DBModel.NHANVIEN" Role="NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUCVU">
+              <PropertyRef Name="CHUCVUID" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="CHUCVUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUYEN_S_COCHUYENM_PHANXUON">
+          <End Type="HRM_DBModel.PHANXUONG" Role="PHANXUONG" Multiplicity="1" />
+          <End Type="HRM_DBModel.CHUYEN_SANXUAT" Role="CHUYEN_SANXUAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHANXUONG">
+              <PropertyRef Name="PHANXUONGID" />
+            </Principal>
+            <Dependent Role="CHUYEN_SANXUAT">
+              <PropertyRef Name="PHANXUONGID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NHANVIEN_THUOCCHUY_CHUYEN_S">
+          <End Type="HRM_DBModel.CHUYEN_SANXUAT" Role="CHUYEN_SANXUAT" Multiplicity="0..1" />
+          <End Type="HRM_DBModel.NHANVIEN" Role="NHANVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHUYEN_SANXUAT">
+              <PropertyRef Name="CHUYENID" />
+            </Principal>
+            <Dependent Role="NHANVIEN">
+              <PropertyRef Name="CHUYENID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHANXUON_COPHANXUO_DONVI_NH">
+          <End Type="HRM_DBModel.DONVI_NHAMAY" Role="DONVI_NHAMAY" Multiplicity="1" />
+          <End Type="HRM_DBModel.PHANXUONG" Role="PHANXUONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVI_NHAMAY">
+              <PropertyRef Name="DONVIID" />
+            </Principal>
+            <Dependent Role="PHANXUONG">
+              <PropertyRef Name="DONVIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -534,6 +751,8 @@
           <EntitySetMapping Name="NHANVIENs">
             <EntityTypeMapping TypeName="HRM_DBModel.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
+                <ScalarProperty Name="CHUCVUID" ColumnName="CHUCVUID" />
+                <ScalarProperty Name="CHUYENID" ColumnName="CHUYENID" />
                 <ScalarProperty Name="NHANVIENID" ColumnName="NHANVIENID" />
                 <ScalarProperty Name="PHONGBANID" ColumnName="PHONGBANID" />
                 <ScalarProperty Name="MANHANVIEN" ColumnName="MANHANVIEN" />
@@ -543,7 +762,6 @@
                 <ScalarProperty Name="SODIENTHOAI" ColumnName="SODIENTHOAI" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
-                <ScalarProperty Name="CHUCVU" ColumnName="CHUCVU" />
                 <ScalarProperty Name="NGAYVAOLAM" ColumnName="NGAYVAOLAM" />
                 <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
               </MappingFragment>
@@ -579,6 +797,46 @@
                 <ScalarProperty Name="VAITROID" ColumnName="VAITROID" />
                 <ScalarProperty Name="TENVAITRO" ColumnName="TENVAITRO" />
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHUCVUs">
+            <EntityTypeMapping TypeName="HRM_DBModel.CHUCVU">
+              <MappingFragment StoreEntitySet="CHUCVU">
+                <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+                <ScalarProperty Name="CAPBAC" ColumnName="CAPBAC" />
+                <ScalarProperty Name="TENCHUCVU" ColumnName="TENCHUCVU" />
+                <ScalarProperty Name="CHUCVUID" ColumnName="CHUCVUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHUYEN_SANXUAT">
+            <EntityTypeMapping TypeName="HRM_DBModel.CHUYEN_SANXUAT">
+              <MappingFragment StoreEntitySet="CHUYEN_SANXUAT">
+                <ScalarProperty Name="DANGHOATDONG" ColumnName="DANGHOATDONG" />
+                <ScalarProperty Name="TENCHUYEN" ColumnName="TENCHUYEN" />
+                <ScalarProperty Name="MACHUYEN" ColumnName="MACHUYEN" />
+                <ScalarProperty Name="PHANXUONGID" ColumnName="PHANXUONGID" />
+                <ScalarProperty Name="CHUYENID" ColumnName="CHUYENID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONVI_NHAMAY">
+            <EntityTypeMapping TypeName="HRM_DBModel.DONVI_NHAMAY">
+              <MappingFragment StoreEntitySet="DONVI_NHAMAY">
+                <ScalarProperty Name="DANGHOATDONG" ColumnName="DANGHOATDONG" />
+                <ScalarProperty Name="DIADIEM" ColumnName="DIADIEM" />
+                <ScalarProperty Name="TENDONVI" ColumnName="TENDONVI" />
+                <ScalarProperty Name="DONVIID" ColumnName="DONVIID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHANXUONGs">
+            <EntityTypeMapping TypeName="HRM_DBModel.PHANXUONG">
+              <MappingFragment StoreEntitySet="PHANXUONG">
+                <ScalarProperty Name="TENPHANXUONG" ColumnName="TENPHANXUONG" />
+                <ScalarProperty Name="DONVIID" ColumnName="DONVIID" />
+                <ScalarProperty Name="PHANXUONGID" ColumnName="PHANXUONGID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="25134437404a410ea3b7558e91d48a54" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="HRM_DBModel.CHAMCONG" Width="1.5" PointX="10.5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRM_DBModel.DANHGIAKPI" Width="1.5" PointX="10.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRM_DBModel.DONNGHIPHEP" Width="1.5" PointX="4" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRM_DBModel.HOPDONG" Width="1.5" PointX="4" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRM_DBModel.NHANVIEN" Width="1.5" PointX="6.875" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRM_DBModel.PHONGBAN" Width="1.5" PointX="4" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRM_DBModel.TAIKHOAN" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRM_DBModel.VAITRO" Width="1.5" PointX="10.5" PointY="6.875" IsExpanded="true" />
+      <Diagram DiagramId="25134437404a410ea3b7558e91d48a54" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="HRM_DBModel.CHAMCONG" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.DANHGIAKPI" Width="1.5" PointX="10.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.DONNGHIPHEP" Width="1.5" PointX="4" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.HOPDONG" Width="1.5" PointX="4" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.NHANVIEN" Width="1.5" PointX="6.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.PHONGBAN" Width="1.5" PointX="4" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.TAIKHOAN" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.VAITRO" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
         <AssociationConnector Association="HRM_DBModel.FK_CHAMCONG_GHINHANCH_NHANVIEN" ManuallyRouted="false" />
         <AssociationConnector Association="HRM_DBModel.FK_DANHGIAK_DUOCDANHG_NHANVIEN" ManuallyRouted="false" />
         <AssociationConnector Association="HRM_DBModel.FK_DONNGHIP_NOPDONNGH_NHANVIEN" ManuallyRouted="false" >
@@ -27,6 +27,14 @@
         <AssociationConnector Association="HRM_DBModel.FK_NHANVIEN_THUOCPHON_PHONGBAN" ManuallyRouted="false" />
         <AssociationConnector Association="HRM_DBModel.FK_TAIKHOAN_SOHUUTAIK_NHANVIEN" ManuallyRouted="false" />
         <AssociationConnector Association="HRM_DBModel.FK_TAIKHOAN_GANVAITRO_VAITRO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRM_DBModel.CHUCVU" Width="1.5" PointX="12.25" PointY="5.875" />
+        <EntityTypeShape EntityType="HRM_DBModel.CHUYEN_SANXUAT" Width="1.5" PointX="4.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRM_DBModel.DONVI_NHAMAY" Width="1.5" PointX="10.5" PointY="1.125" />
+        <EntityTypeShape EntityType="HRM_DBModel.PHANXUONG" Width="1.5" PointX="7.75" PointY="1" />
+        <AssociationConnector Association="HRM_DBModel.FK_NHANVIEN_DAMNHIEMC_CHUCVU" />
+        <AssociationConnector Association="HRM_DBModel.FK_CHUYEN_S_COCHUYENM_PHANXUON" />
+        <AssociationConnector Association="HRM_DBModel.FK_NHANVIEN_THUOCCHUY_CHUYEN_S" />
+        <AssociationConnector Association="HRM_DBModel.FK_PHANXUON_COPHANXUO_DONVI_NH" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -3,8 +3,36 @@
   "WorkspaceRootPath": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\hrmsystem\\models\\hrmmodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\models\\hrmmodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|d:\\hoc\\ntu\\a_detaithuctap\\vs\\hrmsystem\\hrmsystem\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|d:\\hoc\\ntu\\a_detaithuctap\\vs\\hrmsystem\\hrmsystem\\content\\styleadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\content\\styleadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|d:\\hoc\\ntu\\a_detaithuctap\\vs\\hrmsystem\\hrmsystem\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|d:\\hoc\\ntu\\a_detaithuctap\\vs\\hrmsystem\\hrmsystem\\controllers\\nhanvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\controllers\\nhanvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|d:\\hoc\\ntu\\a_detaithuctap\\vs\\hrmsystem\\hrmsystem\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|d:\\hoc\\ntu\\a_detaithuctap\\vs\\hrmsystem\\hrmsystem\\controllers\\taikhoanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\controllers\\taikhoanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|d:\\hoc\\ntu\\a_detaithuctap\\vs\\hrmsystem\\hrmsystem\\views\\nhanviens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\views\\nhanviens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|d:\\hoc\\ntu\\a_detaithuctap\\vs\\hrmsystem\\hrmsystem\\models\\hrmmodel.edmx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{17C86839-7C6E-4D24-930B-5811048AB816}|HRMSystem\\HRMSystem.csproj|solutionrelative:hrmsystem\\models\\hrmmodel.edmx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +42,111 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "styleAdmin.css",
+              "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Content\\styleAdmin.css",
+              "RelativeDocumentMoniker": "HRMSystem\\Content\\styleAdmin.css",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Content\\styleAdmin.css",
+              "RelativeToolTip": "HRMSystem\\Content\\styleAdmin.css",
+              "ViewState": "AgIAAB8CAAAAAAAAAAAAAPoBAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-10-09T11:55:52.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "HRMModel.edmx [Diagram1]",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Views\\Dashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "HRMSystem\\Views\\Dashboard\\Index.cshtml",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Views\\Dashboard\\Index.cshtml",
+              "RelativeToolTip": "HRMSystem\\Views\\Dashboard\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-09T11:43:37.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "HRMSystem\\Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "HRMSystem\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T11:03:36.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NHANVIENsController.cs",
+              "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Controllers\\NHANVIENsController.cs",
+              "RelativeDocumentMoniker": "HRMSystem\\Controllers\\NHANVIENsController.cs",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Controllers\\NHANVIENsController.cs",
+              "RelativeToolTip": "HRMSystem\\Controllers\\NHANVIENsController.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAA4wFoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T10:46:57.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TAIKHOANsController.cs",
+              "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Controllers\\TAIKHOANsController.cs",
+              "RelativeDocumentMoniker": "HRMSystem\\Controllers\\TAIKHOANsController.cs",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Controllers\\TAIKHOANsController.cs",
+              "RelativeToolTip": "HRMSystem\\Controllers\\TAIKHOANsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T10:31:10.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PasswordHelper.cs",
+              "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\PasswordHelper.cs",
+              "RelativeDocumentMoniker": "HRMSystem\\PasswordHelper.cs",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\PasswordHelper.cs",
+              "RelativeToolTip": "HRMSystem\\PasswordHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T10:27:34.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Views\\NHANVIENs\\Index.cshtml",
+              "RelativeDocumentMoniker": "HRMSystem\\Views\\NHANVIENs\\Index.cshtml",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Views\\NHANVIENs\\Index.cshtml",
+              "RelativeToolTip": "HRMSystem\\Views\\NHANVIENs\\Index.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAQwEcAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-09T10:14:14.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HRMModel.edmx",
               "DocumentMoniker": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Models\\HRMModel.edmx",
               "RelativeDocumentMoniker": "HRMSystem\\Models\\HRMModel.edmx",
-              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Models\\HRMModel.edmx [Diagram1]",
-              "RelativeToolTip": "HRMSystem\\Models\\HRMModel.edmx [Diagram1]",
+              "ToolTip": "D:\\Hoc\\NTU\\A_DeTaiThucTap\\VS\\HRMSystem\\HRMSystem\\Models\\HRMModel.edmx",
+              "RelativeToolTip": "HRMSystem\\Models\\HRMModel.edmx",
+              "ViewState": "AgIAAH8BAAAAAAAAAAAuwJgBAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2026-10-03T06:11:15.562Z",
-              "EditorCaption": " [Diagram1]"
+              "WhenOpened": "2026-10-09T10:07:53.04Z",
+              "EditorCaption": ""
             }
           ]
         }
