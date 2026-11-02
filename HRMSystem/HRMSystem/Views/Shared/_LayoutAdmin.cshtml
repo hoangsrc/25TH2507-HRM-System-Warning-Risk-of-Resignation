@@ -6,12 +6,11 @@
     <title>@ViewBag.Title - HRM System</title>
 
     @Styles.Render("~/Content/css")
-    <link href="~/Content/styleAdmin.css" rel="stylesheet" />
+    <link href="~/Content/styleAdmin.css?v=2026" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     @{
-        // Khai báo DUY NHẤT 1 LẦN tại đây để toàn bộ trang dùng chung
         string ctrl = (ViewContext.RouteData.Values["controller"] ?? "").ToString().ToLower();
         string currentRole = (Session["Role"] ?? "Admin").ToString();
     }
@@ -31,8 +30,8 @@
                         <i class="glyphicon glyphicon-home"></i> Trang chủ
                     </a>
                 </li>
-                <li class="@(ctrl == "dashboard" ? "active" : "")">
-                    <a href="#">
+                <li class="@(ctrl.Contains("dashboard") ? "active" : "")">
+                    <a href="@Url.Action("Index", "Dashboard")">
                         <i class="glyphicon glyphicon-stats"></i> Dashboard Thống Kê
                     </a>
                 </li>

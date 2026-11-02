@@ -138,7 +138,6 @@
 
 <!-- Bieu Do -->
 <script>
-    //ts-nocheck
     document.addEventListener("DOMContentLoaded", function () {
         var dataStore = document.getElementById("chartDataContainer");
         var ChartLib = (new Function("return window.Chart;"))();
@@ -178,7 +177,7 @@
             });
         }
 
-        // Biểu đồ tròn 1: Giới tính (Xanh thép sẫm & Đỏ mận đất)
+        // Biểu đồ tròn 1: Giới tính 
         var ctxGender = document.getElementById('genderChart');
         if (ctxGender) {
             new ChartLib(ctxGender, {
