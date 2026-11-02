@@ -482,17 +482,26 @@ body.login-page {
     padding: 10px 30px 30px;
 }
 
-    .login-body .form-group label {
-        font-size: 13px;
-        color: #37474f;
-        font-weight: 600;
+    .login-body .form-group {
+        margin-bottom: 16px;
     }
 
+        .login-body .form-group label {
+            font-size: 13px;
+            color: #37474f;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+        }
+
     .login-body .form-control {
+        width: 100%; 
         height: 40px;
         border-radius: 4px;
         border: 1px solid #cfd8dc;
         font-size: 13.5px;
+        padding: 6px 12px; 
+        box-sizing: border-box;
     }
 
 .btn-login {
@@ -505,6 +514,7 @@ body.login-page {
     width: 100%;
     border: none;
     transition: all 0.2s;
+    cursor: pointer;
 }
 
     .btn-login:hover {
@@ -522,7 +532,7 @@ body.login-page {
     color: #475569;
 }
 
-/* DASHBOARD THỐNG KÊ) */
+/* DASHBOARD THỐNG KÊ */
 .dash-summary-card {
     background: #ffffff;
     border: 1px solid #d1d5db;
