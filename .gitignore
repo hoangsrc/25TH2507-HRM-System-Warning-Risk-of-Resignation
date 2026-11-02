@@ -1,20 +1,25 @@
-# Visual Studio
+## Visual Studio cache, options, and temporary files
 .vs/
-*.user
 *.suo
-*.cache
+*.user
+*.userosscache
+*.sln.docstates
 
-# Build output
+## Build outputs
 [Bb]in/
 [Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+HRMSystem/HRMSystem/bin/
+HRMSystem/HRMSystem/obj/
 
-# NuGet packages
+## NuGet Packages
 packages/
+HRMSystem/packages/
+*.nupkg
 
-# Temporary files
-*.tmp
-*.log
-
-# OS files
-Thumbs.db
-Desktop.ini
+## Visual Studio auto-generated / temporary files
+*.rsuser
+*.userprefs
+App_Data/*.mdf
+App_Data/*.ldf
