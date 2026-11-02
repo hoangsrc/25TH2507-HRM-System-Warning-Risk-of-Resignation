@@ -1,5 +1,6 @@
-## Visual Studio cache, options, and temporary files
+## Visual Studio cache & temporary files
 .vs/
+**/.vs/
 *.suo
 *.user
 *.userosscache
@@ -8,18 +9,17 @@
 ## Build outputs
 [Bb]in/
 [Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
 [Dd]ebug/
 [Rr]elease/
-HRMSystem/HRMSystem/bin/
-HRMSystem/HRMSystem/obj/
 
 ## NuGet Packages
 packages/
-HRMSystem/packages/
+**/packages/
 *.nupkg
 
-## Visual Studio auto-generated / temporary files
+## User-specific / accidental files
+git
 *.rsuser
 *.userprefs
-App_Data/*.mdf
-App_Data/*.ldf
