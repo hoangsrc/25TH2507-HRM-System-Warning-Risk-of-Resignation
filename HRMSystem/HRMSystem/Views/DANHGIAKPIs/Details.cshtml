@@ -81,7 +81,7 @@
             <tr>
                 <td class="sec-label">Chức vụ</td>
                 <td class="sec-value">
-                    @(Model.NHANVIEN != null ? Model.NHANVIEN.CHUCVU : "-")
+                    @(Model.NHANVIEN != null && Model.NHANVIEN.CHUCVU != null ? Model.NHANVIEN.CHUCVU.TENCHUCVU : "-")
                 </td>
             </tr>
         </tbody>

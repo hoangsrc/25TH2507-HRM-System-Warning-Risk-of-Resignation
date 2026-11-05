@@ -203,9 +203,9 @@ GO
 
 -- 8. TÀI KHOẢN MẪU
 INSERT INTO TAIKHOAN (TAIKHOANID, VAITROID, NHANVIENID, TENDANGNHAP, MATKHAU, EMAIL, DANGHOATDONG, NGAYTAO) VALUES 
-(1, 1, 1, 'admin', '123456', 'hoang.admin@quangviet.vn', 1, GETDATE()),
-(2, 2, 280, 'hr', '123456', 'hr.cuchi@quangviet.vn', 1, GETDATE()),
-(3, 3, 226, 'manager', '123456', 'quandoc.may1@quangviet.vn', 1, GETDATE());
+(1, 1, 1, 'admin', 'E1xZk9Qk3vL7wZq8yM1r0Jp+V9A4b3C2d1E0f8G7h6I5j7K8', 'hoang.admin@quangviet.vn', 1, GETDATE()),
+(2, 2, 280, 'hr', 'K9pLm2Wv4xR8zY1b0Pn+T3C5d6E7f8G9h0I1j2K3l4M5n6O7', 'hr.cuchi@quangviet.vn', 1, GETDATE()),
+(3, 3, 226, 'manager', 'Z8aBc3De4Fg5hI6j7Kl+M8N9o0P1q2R3s4T5u6V7w8X9y0Z1', 'quandoc.may1@quangviet.vn', 1, GETDATE());
 
 -- 9. NGHỈ PHÉP & CHẤM CÔNG MẪU
 INSERT INTO DONNGHIPHEP (DONNGHIPHEPID, NHANVIENID, LOAINGHIPHEP, TUNGAY, DENNGAY, LYDO, TRANGTHAI, NGUOIDUYET, NGAYTAO) VALUES 
@@ -219,12 +219,4 @@ INSERT INTO CHAMCONG (CHAMCONGID, NHANVIENID, NGAYCHAMCONG, GIOVAO, GIORA, TRANG
 GO
 
 PRINT '===> NAPH THANH CONG 300 CONG NHAN MAY VA DULIEU HOP DONG CHUAN!';
-GO
--------------------------------------------------------------
-
--- Cập nhật mật khẩu băm PBKDF2 (tương ứng với mật khẩu gốc 123456)
--- Chuỗi này đã được sinh bằng hàm PasswordHelper với Salt ngẫu nhiên
-UPDATE TAIKHOAN 
-SET MATKHAU = 'xN/G9Qk3vL7wZq8yM1r0Jp+V9A4b3C2d1E0f8G7h6I5j'
-WHERE TENDANGNHAP IN ('admin', 'hr', 'manager');
 GO

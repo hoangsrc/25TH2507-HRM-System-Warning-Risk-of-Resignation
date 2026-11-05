@@ -58,7 +58,9 @@
             </tr>
             <tr>
                 <td class="sec-label">Chức danh</td>
-                <td class="sec-value" style="font-weight: 600;">@Model.CHUCVU</td>
+                <td class="sec-value">
+                    @(Model.CHUCVU != null ? Model.CHUCVU.TENCHUCVU + (string.IsNullOrEmpty(Model.CHUCVU.CAPBAC) ? "" : " (" + Model.CHUCVU.CAPBAC + ")") : "-")
+                </td>
             </tr>
             <tr>
                 <td class="sec-label">Bộ phận / Phòng ban</td>
