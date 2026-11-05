@@ -102,21 +102,23 @@
     </div>
 </div>
 
-<!-- Script tìm kiếm nhanh -->
 <script>
-    function searchTable() {
-        var input = document.getElementById("searchInput");
-        var filter = input.value.toLowerCase();
-        var table = document.getElementById("employeeTable");
-        var tr = table.getElementsByTagName("tr");
+            window.searchTable = function () {
+                var input = document.getElementById("searchInput");
+                var table = document.getElementById("employeeTable");
 
-        for (var i = 1; i < tr.length; i++) {
-            var text = tr[i].textContent || tr[i].innerText;
-            if (text.toLowerCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
+                if (input instanceof HTMLInputElement && table) {
+                    var filter = input.value.toLowerCase();
+                    var tr = table.getElementsByTagName("tr");
+
+                    for (var i = 1; i < tr.length; i++) {
+                        var text = tr[i].textContent || tr[i].innerText || "";
+                        if (text.toLowerCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            };
 </script>
